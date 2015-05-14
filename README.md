@@ -33,11 +33,11 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
         <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
 ![](images/actions.png "Actions")
-6. Add the Beaconstac BLEService to your app manifest:
+8. Add the Beaconstac BLEService to your app manifest:
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 ![](images/bleservice.png "BLEService")
-7. Add values for UUID, region_indentifier filter to `strings.xml`:
+9. Add values for UUID, region_indentifier filter to `strings.xml`:
 
         <!-- Override the defaults -->
         <string name="uuid"><!-- UUID to filter beacons by --></string>
@@ -45,6 +45,6 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <!-- Optional: Override text message to be displayed when Bluetooth is disabled -->
         <string name="ble_disabled_text">Bluetooth is disabled. Beacon detection would not work.</string>
 ![](images/resources.png "Resources")
-8. To start ranging beacons, implement `BeaconstacCallback` in your Activity or Fragment, and implement the methods `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`.
+10. To start ranging beacons, implement `BeaconstacCallback` in your Activity or Fragment, and implement the methods `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`.
 ![](images/callbacks.png "Callbacks")
-9. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
+11. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
