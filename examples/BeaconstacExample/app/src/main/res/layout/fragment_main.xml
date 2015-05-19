@@ -10,7 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/beaconListView"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beacons Ranged: "
+        android:id="@+id/RangedView"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,29 +25,13 @@
         android:text="0"
         android:id="@+id/beaconCount"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView2" />
+        android:layout_toRightOf="@id/RangedView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camped on to the beacon in green."
-        android:id="@+id/textView"
-        android:layout_below="@+id/beaconCount"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Beacons Ranged: "
-        android:id="@+id/textView2"
-        android:layout_above="@+id/textView"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView3"
+        android:text="Camped: 0"
+        android:id="@+id/CampedView"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/beaconListView" />
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

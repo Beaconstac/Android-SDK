@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -49,28 +50,28 @@ public class MainActivity extends Activity implements BeaconstacCallback {
         // Use this check to determine whether BLE is supported on the device.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
         }
 
         // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
         // BluetoothAdapter through BluetoothManager.
-        BluetoothManager mBluetoothManager  = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter                   = mBluetoothManager.getAdapter();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            mBluetoothAdapter = mBluetoothManager.getAdapter();
+        }
 
         // Checks if Bluetooth is supported on the device.
         if (mBluetoothAdapter == null) {
             Log.e(TAG, "Unable to obtain a BluetoothAdapter.");
-            finish();
-            return;
+            Toast.makeText(this, "Unable to obtain a BluetoothAdapter", Toast.LENGTH_LONG).show();
+        } else {
+            if (!mBluetoothAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }
         }
 
         if (savedInstanceState == null) {
             initList();
-        }
-
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
 
     }
@@ -81,7 +82,7 @@ public class MainActivity extends Activity implements BeaconstacCallback {
         beaconList.setAdapter(beaconAdapter);
 
         bCount = (TextView) findViewById(R.id.beaconCount);
-        testCamped = (TextView) findViewById(R.id.textView3);
+        testCamped = (TextView) findViewById(R.id.CampedView);
     }
 
     @Override
@@ -102,14 +103,16 @@ public class MainActivity extends Activity implements BeaconstacCallback {
 
     @Override
     protected void onStart() {
-        Beaconstac.getInstance(this.getApplicationContext()).startRangingBeacons(UUID, REGION_IDENTIFIER, null, this);
+        if (mBluetoothAdapter != null)
+            Beaconstac.getInstance(this.getApplicationContext()).startRangingBeacons(UUID, REGION_IDENTIFIER, null, this);
         super.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Beaconstac.getInstance(this.getApplicationContext()).onResume();
+        if (mBluetoothAdapter != null)
+            Beaconstac.getInstance(this.getApplicationContext()).onResume();
         initList();
         bCount.setText("" + beacons.size());
     }
