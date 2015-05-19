@@ -1,7 +1,5 @@
 # Android-SDK
 
-# Note: The current version of the SDK only supports Anrdoid API 21+ (Lollipop).
-
 ## Introduction
 
 Beaconstac SDK is an easy way to enable proximity marketing and location analytics through an iBeacon-compliant BLE network. 
