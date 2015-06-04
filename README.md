@@ -29,22 +29,30 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <uses-permission android:name="android.permission.BLUETOOTH" />
         <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 ![](images/permissions.png "Permissions")
-7. Add bluetooth `STATE_CHANGED` action to the activity `intent-filter`:
-
-        <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
-![](images/actions.png "Actions")
-8. Add the Beaconstac BLEService to your app manifest:
+7. Add the Beaconstac BLEService to your app manifest:
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 ![](images/bleservice.png "BLEService")
+8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the events `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`. From the `BeaconstacExample` app:
+
+        <receiver android:name=".BeaconstacExampleReceiver">
+            <intent-filter>
+                <action android:name="com.mobstac.beaconstac.intent.action.RANGED" />
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED" />
+                <action android:name="com.mobstac.beaconstac.intent.action.CAMPED" />
+            </intent-filter>
+        </receiver>
+![](images/ "Receiver")
 9. Add values for UUID, region_indentifier filter to `strings.xml`:
 
         <!-- Override the defaults -->
-        <string name="uuid"><!-- UUID to filter beacons by --></string>
+        <string name="filter_uuid"><!-- UUID to filter beacons by --></string>
         <string name="region_identifier"><!-- unique identifier for beacons --></string
         <!-- Optional: Override text message to be displayed when Bluetooth is disabled -->
         <string name="ble_disabled_text">Bluetooth is disabled. Beacon detection would not work.</string>
 ![](images/resources.png "Resources")
-10. To start ranging beacons, implement `BeaconstacCallback` in your Activity or Fragment, and implement the methods `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`.
-![](images/callbacks.png "Callbacks")
+10. To start ranging beacons, call `startService` on `com.mobstac.beaconstac.core.MSBLEService` once the app starts.
+
+        startService(new Intent(this, MSBLEService.class));
+![](images/startservice.png "Start Service")
 11. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
