@@ -33,7 +33,8 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 ![](images/bleservice.png "BLEService")
-8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the events `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`. From the `BeaconstacExample` app:
+8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the events `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`.
+9. Add the beacon actions to app manifest. From the `BeaconstacExample` app:
 
         <receiver android:name=".BeaconstacExampleReceiver">
             <intent-filter>
@@ -43,7 +44,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             </intent-filter>
         </receiver>
 ![](images/receiver.png "Receiver")
-9. Add values for UUID, region_indentifier filter to `strings.xml`:
+10. Add values for UUID, region_indentifier filter to `strings.xml`:
 
         <!-- Override the defaults -->
         <string name="filter_uuid"><!-- UUID to filter beacons by --></string>
@@ -51,8 +52,8 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <!-- Optional: Override text message to be displayed when Bluetooth is disabled -->
         <string name="ble_disabled_text">Bluetooth is disabled. Beacon detection would not work.</string>
 ![](images/resources.png "Resources")
-10. To start ranging beacons, call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity.
+11. To start ranging beacons, call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity.
 
         startService(new Intent(this, MSBLEService.class));
 ![](images/startservice.png "Start Service")
-11. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
+12. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
