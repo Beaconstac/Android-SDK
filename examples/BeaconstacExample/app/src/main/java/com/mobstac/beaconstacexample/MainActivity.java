@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,13 +17,17 @@ import android.widget.Toast;
 
 import com.mobstac.beaconstac.callbacks.BeaconstacCallback;
 import com.mobstac.beaconstac.core.Beaconstac;
+import com.mobstac.beaconstac.core.BeaconstacReceiver;
+import com.mobstac.beaconstac.core.MSBLEService;
+import com.mobstac.beaconstac.core.MSConstants;
 import com.mobstac.beaconstac.models.MSBeacon;
+import com.mobstac.beaconstac.utils.MSLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity implements BeaconstacCallback {
+public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -36,16 +41,13 @@ public class MainActivity extends Activity implements BeaconstacCallback {
 
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
-    String UUID;
-    String REGION_IDENTIFIER;
+
+    private boolean registered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        UUID = getApplicationContext().getResources().getString(R.string.uuid);
-        REGION_IDENTIFIER = getApplicationContext().getResources().getString(R.string.region_identifier);
 
         // Use this check to determine whether BLE is supported on the device.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -73,7 +75,7 @@ public class MainActivity extends Activity implements BeaconstacCallback {
         if (savedInstanceState == null) {
             initList();
         }
-
+        startService(new Intent(this, MSBLEService.class));
     }
 
     private void initList() {
@@ -83,6 +85,7 @@ public class MainActivity extends Activity implements BeaconstacCallback {
 
         bCount = (TextView) findViewById(R.id.beaconCount);
         testCamped = (TextView) findViewById(R.id.CampedView);
+        registerBroadcast();
     }
 
     @Override
@@ -95,31 +98,29 @@ public class MainActivity extends Activity implements BeaconstacCallback {
     @Override
     protected void onPause() {
         super.onPause();
-        Beaconstac.getInstance(this.getApplicationContext()).onPause();
         beaconAdapter.clear();
         beaconAdapter.notifyDataSetChanged();
         bCount.setText("" + beacons.size());
+        unregisterBroadcast();
     }
 
     @Override
     protected void onStart() {
-        if (mBluetoothAdapter != null)
-            Beaconstac.getInstance(this.getApplicationContext()).startRangingBeacons(UUID, REGION_IDENTIFIER, null, this);
         super.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mBluetoothAdapter != null)
-            Beaconstac.getInstance(this.getApplicationContext()).onResume();
         initList();
         bCount.setText("" + beacons.size());
+        registerBroadcast();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterBroadcast();
     }
 
     // Callback intent results
@@ -132,51 +133,44 @@ public class MainActivity extends Activity implements BeaconstacCallback {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-    // Handle callback raised from Beaconstac when
-    // the app leaves the proximity of the camped on beacon
-    @Override
-    public void exitedBeacon(final MSBeacon beacon) {
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                testCamped.setText("Exited " + beacon.getMajor() + ":" + beacon.getMinor());
-                beaconAdapter.notifyDataSetChanged();
-            }
-        });
-
+    private void registerBroadcast() {
+        if (!registered) {
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RANGED);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_CAMPED);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED);
+            registerReceiver(myBroadcastReceiver, intentFilter);
+            registered = true;
+        }
     }
 
-    // Handle callback raised from Beaconstac when
-    // the app updates the list of ranged beacons
-    @Override
-    public void rangedBeacons(final List<MSBeacon> rangedBeacons) {
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                bCount.setText("" + rangedBeacons.size());
-                beaconAdapter.clear();
-                beacons.addAll(rangedBeacons);
-                beaconAdapter.notifyDataSetChanged();
-            }
-        });
-
+    private void unregisterBroadcast() {
+        if (registered) {
+            unregisterReceiver(myBroadcastReceiver);
+            registered = false;
+        }
     }
 
-    // Handle callback raised from Beaconstac when
-    // the app has camped on to a new beacon
-    @Override
-    public void campedOnBeacon(final MSBeacon beacon) {
+    BeaconstacReceiver myBroadcastReceiver = new BeaconstacReceiver() {
+        @Override
+        public void exitedBeacon(Context context, MSBeacon beacon) {
+            testCamped.setText("Exited: " + beacon.getMajor() + ":" + beacon.getMinor());
+            beaconAdapter.notifyDataSetChanged();
+        }
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                testCamped.setText("Camped " + beacon.getMajor() + ":" + beacon.getMinor());
-                beaconAdapter.addBeacon(beacon);
-                beaconAdapter.notifyDataSetChanged();
-            }
-        });
-    }
+        @Override
+        public void rangedBeacons(Context context, ArrayList<MSBeacon> rangedBeacons) {
+            bCount.setText("" + rangedBeacons.size());
+            beaconAdapter.clear();
+            beacons.addAll(rangedBeacons);
+            beaconAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void campedOnBeacon(Context context, MSBeacon beacon) {
+            testCamped.setText("Camped: " + beacon.getMajor() + ":" + beacon.getMinor());
+            beaconAdapter.addBeacon(beacon);
+            beaconAdapter.notifyDataSetChanged();
+        }
+    };
 }
