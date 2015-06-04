@@ -49,7 +49,7 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
             );
             Notification mBuilder = new Notification.Builder(context.getApplicationContext())
                     .setContentText(text)
-                    .setContentTitle("BeaconstacDemo")
+                    .setContentTitle("BeaconstacExample")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentIntent(pendingIntent).build();
             NotificationManager notificationManager = (NotificationManager)
