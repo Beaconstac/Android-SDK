@@ -6,7 +6,7 @@
     <string name="ble_not_supported">BLE not supported on this device.</string>
     <!-- Override the defaults -->
     <!-- UUID to filter beacons for -->
-    <string name="uuid">B9407F30-F5F8-466E-AFF9-25556B57FE6D</string>
+    <string name="filter_uuid">B9407F30-F5F8-466E-AFF9-25556B57FE6D</string>
     <string name="region_identifier">com.mobstac.beaconstacexample</string>
 
 </resources>
