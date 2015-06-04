@@ -12,9 +12,7 @@ import com.mobstac.beaconstac.models.MSBeacon;
 
 import java.util.ArrayList;
 
-/**
- * Created by bhashkar on 6/4/15.
- */
+
 public class BeaconstacExampleReceiver extends BeaconstacReceiver {
 
     @Override

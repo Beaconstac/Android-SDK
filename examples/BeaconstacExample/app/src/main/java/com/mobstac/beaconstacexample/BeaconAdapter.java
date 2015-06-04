@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-/**
- * Created by garimabatra on 5/13/15.
- */
+
 public class BeaconAdapter extends BaseAdapter {
 
     private ArrayList<MSBeacon> beacons;
