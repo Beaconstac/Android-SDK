@@ -32,7 +32,7 @@ Beaconstac SDK is an easy way to enable proximity marketing and location analyti
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 ![](images/bleservice.png "BLEService")
-8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon` and `exitedBeacon` events.
+8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon` and `exitedBeacon` events. The `BeaconstacExample` app contains an example of each type - directly using `BeaconstacReceiver` in the activity (this will require registering and unregistering it to receive intents in the activity itself), and extending `BeaconstacReceiver` and registering it to receive `actions` in the app manifest.
 9. Add the beacon actions to app manifest. From the `BeaconstacExample` app:
 
         <receiver android:name=".BeaconstacExampleReceiver" android:exported="false">
