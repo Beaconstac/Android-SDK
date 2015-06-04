@@ -42,7 +42,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
                 <action android:name="com.mobstac.beaconstac.intent.action.CAMPED" />
             </intent-filter>
         </receiver>
-![](images/ "Receiver")
+![](images/receiver.png "Receiver")
 9. Add values for UUID, region_indentifier filter to `strings.xml`:
 
         <!-- Override the defaults -->
