@@ -17,7 +17,6 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         flatDir {
             dirs 'libs'
         }
-
 ![](images/repositories.png "Repositories")
 4. In the `build.gradle` file of the app, add the following in the dependencies section:
 
@@ -33,7 +32,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 ![](images/bleservice.png "BLEService")
-8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the events `rangedBeacons`, `campedOnBeacon` and `exitedBeacon`.
+8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon` and `exitedBeacon` events.
 9. Add the beacon actions to app manifest. From the `BeaconstacExample` app:
 
         <receiver android:name=".BeaconstacExampleReceiver">
