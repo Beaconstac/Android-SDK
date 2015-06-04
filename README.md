@@ -35,7 +35,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 8. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon` and `exitedBeacon` events.
 9. Add the beacon actions to app manifest. From the `BeaconstacExample` app:
 
-        <receiver android:name=".BeaconstacExampleReceiver">
+        <receiver android:name=".BeaconstacExampleReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="com.mobstac.beaconstac.intent.action.RANGED" />
                 <action android:name="com.mobstac.beaconstac.intent.action.EXITED" />
