@@ -4,9 +4,9 @@
 
 Beaconstac SDK is an easy way to enable proximity marketing and location analytics through an iBeacon-compliant BLE network. 
 
-## Documentation
+<!--## Documentation-->
 
-Please refer to the API documentation on the [Beaconstac developer hub](https://beaconstac.github.io/Android-SDK/).
+<!--Please refer to the API documentation on the [Beaconstac developer hub](https://beaconstac.github.io/Android-SDK/).-->
 
 ## Integration with your existing project in Android Studio
 
