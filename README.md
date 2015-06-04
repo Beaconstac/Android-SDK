@@ -51,7 +51,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <!-- Optional: Override text message to be displayed when Bluetooth is disabled -->
         <string name="ble_disabled_text">Bluetooth is disabled. Beacon detection would not work.</string>
 ![](images/resources.png "Resources")
-10. To start ranging beacons, call `startService` on `com.mobstac.beaconstac.core.MSBLEService` once the app starts.
+10. To start ranging beacons, call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity.
 
         startService(new Intent(this, MSBLEService.class));
 ![](images/startservice.png "Start Service")
