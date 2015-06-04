@@ -23,7 +23,17 @@
                 <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".BeaconstacExampleReceiver">
+            <intent-filter>
+                <action android:name="com.mobstac.beaconstac.intent.action.RANGED" />
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED" />
+                <action android:name="com.mobstac.beaconstac.intent.action.CAMPED" />
+            </intent-filter>
+        </receiver>
+
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
+
     </application>
 
 </manifest>
