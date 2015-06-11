@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['campedonbeacon',['campedOnBeacon',['../interfacecom_1_1mobstac_1_1beaconstac_1_1callbacks_1_1_beaconstac_callback.html#a53a258d2fbd9e5cb8c6e1c66dc777e6a',1,'com::mobstac::beaconstac::callbacks::BeaconstacCallback']]]
+  ['campedonbeacon',['campedOnBeacon',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac_receiver.html#a9884dc492a0565112572fb75d4266245',1,'com::mobstac::beaconstac::core::BeaconstacReceiver']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rangedbeacons',['rangedBeacons',['../interfacecom_1_1mobstac_1_1beaconstac_1_1callbacks_1_1_beaconstac_callback.html#a3d59f153cadec26d2364f9b5322abf6a',1,'com::mobstac::beaconstac::callbacks::BeaconstacCallback']]]
+  ['log',['log',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_logger.html#a620f541b5eeae863e0ed778cf97db7a8',1,'com::mobstac::beaconstac::utils::MSLogger']]]
 ];

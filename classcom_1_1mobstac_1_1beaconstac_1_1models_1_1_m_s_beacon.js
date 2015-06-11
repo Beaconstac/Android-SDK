@@ -1,6 +1,9 @@
 var classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon =
 [
+    [ "MSBeacon", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ab78e233e40c2761ef540bc454cf41f3f", null ],
+    [ "MSBeacon", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ad211985a6e0fd6f720b79f075cabe31a", null ],
     [ "addBeaconState", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a3962e73356d8079db986b76882e0f47b", null ],
+    [ "describeContents", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a9483b20ee4088f0f068c4594333e74f5", null ],
     [ "getBeaconKey", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a5f3263261df466ef0bb94dcd69ba9e26", null ],
     [ "getBeaconUUID", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ab6ab84abc4f691cf836ba937a6e5bd5f", null ],
     [ "getBias", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a40d4b3ea1f1012ea1f20a7696d5fdf54", null ],
@@ -11,13 +14,10 @@ var classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon =
     [ "getMinor", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ab598d28a2ad693880d14a00453ae93df", null ],
     [ "getProximityHistoryArray", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a013fbe6a9d99db0c760387380c9caaea", null ],
     [ "getStale", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a88a9dc131196bdbc0c68fe9be6c190ed", null ],
-    [ "init", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ad5e1148095870711c2645d6e91a4ddfb", null ],
     [ "isFar", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a799667e87f94ff5e4685d8eec1bc70b5", null ],
-    [ "setBeaconKey", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ae9ca6e0675dd74d0405e902f066df610", null ],
-    [ "setBeaconUUID", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a8c5acc15b84c4bc6e91777a0ba22166c", null ],
+    [ "reset", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a58dd7824aab69e42b987948d1163afb5", null ],
     [ "setBias", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a7148baeea0441118c03856cf60fec3ae", null ],
     [ "setIsCampedOn", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#afdf263dfee84579e0119e4bd5ab50cba", null ],
-    [ "setMajor", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#afdf3c8539d0ef4d81e0c448c4a43b2d0", null ],
-    [ "setMinor", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a563df44c0b9f633b32ee97d19dc10b97", null ],
-    [ "setStale", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a068402c0b442d9f95e3d993f0ac17555", null ]
+    [ "setStale", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a068402c0b442d9f95e3d993f0ac17555", null ],
+    [ "writeToParcel", "classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#af7ad8a960ec979e024da4694802dba30", null ]
 ];

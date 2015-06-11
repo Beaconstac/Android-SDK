@@ -1,12 +1,8 @@
 var classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac =
 [
-    [ "beaconsRanged", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a169569765c2224dc18d9fec4760a41d5", null ],
-    [ "campedOnBeacon", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a6b3e116571f03a8ab58953c541b1637c", null ],
-    [ "exitedBeacon", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#aa9bbaf139de777243081084a6d627741", null ],
-    [ "onDestroy", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a313a3392189af164089f0a6e1663be66", null ],
-    [ "onPause", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#aea04cb181af56d700349282bbcde1f17", null ],
-    [ "onResume", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a03d385ab22ca77f8abc81bd8cfa20989", null ],
-    [ "startRangingBeacons", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a5bc111a10bb0456887043069130a886c", null ],
-    [ "stopRangingBeacons", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a012dbc10d56542920b855712300e338c", null ],
-    [ "triggeredRule", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a8d90a9770c996ca49c5629ee53238090", null ]
+    [ "setRegionParams", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#aa8b764c86ebcb4f4231175e004f342e6", null ],
+    [ "setUserFacts", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a1ee4ef98ac09cd98ea819ae5ea8cbd3a", null ],
+    [ "setUserFacts", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#abeb86f90456fa8acbb1a3a406ac62336", null ],
+    [ "setUserFacts", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#ac4f3d299d149c04ef0056ed17d6152d2", null ],
+    [ "setUserFacts", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#aea441ba449a52b49cd7d22b66cf56e42", null ]
 ];

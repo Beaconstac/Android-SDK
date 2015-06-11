@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rangedbeacons',['rangedBeacons',['../interfacecom_1_1mobstac_1_1beaconstac_1_1callbacks_1_1_beaconstac_callback.html#a3d59f153cadec26d2364f9b5322abf6a',1,'com::mobstac::beaconstac::callbacks::BeaconstacCallback']]]
+  ['isfar',['isFar',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a799667e87f94ff5e4685d8eec1bc70b5',1,'com::mobstac::beaconstac::models::MSBeacon']]]
 ];

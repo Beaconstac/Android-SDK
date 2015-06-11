@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['startrangingbeacons',['startRangingBeacons',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a5bc111a10bb0456887043069130a886c',1,'com::mobstac::beaconstac::core::Beaconstac']]],
-  ['stoprangingbeacons',['stopRangingBeacons',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a012dbc10d56542920b855712300e338c',1,'com::mobstac::beaconstac::core::Beaconstac']]]
+  ['log',['log',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_logger.html#a620f541b5eeae863e0ed778cf97db7a8',1,'com::mobstac::beaconstac::utils::MSLogger']]]
 ];
