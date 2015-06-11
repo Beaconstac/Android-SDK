@@ -72,9 +72,10 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             initList();
         }
-        Beaconstac beaconstac = Beaconstac.getInstance(this);
+
         // set region parameters (UUID and unique region identifier)
-        beaconstac.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
+        Beaconstac.getInstance(this).
+                setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
         // start MSBLEService
         startService(new Intent(this, MSBLEService.class));

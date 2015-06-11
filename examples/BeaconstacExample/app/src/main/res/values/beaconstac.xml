@@ -21,7 +21,7 @@
 
     <!-- Beaconstac API token -->
     <string name="api_key"></string>
-    
+
     <!-- Organization id -->
     <integer name="organization_id">0</integer>
 </resources>
