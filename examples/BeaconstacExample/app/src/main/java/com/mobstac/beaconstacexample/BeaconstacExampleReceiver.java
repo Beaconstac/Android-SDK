@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
+import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
 
 import java.util.ArrayList;
 
 
 public class BeaconstacExampleReceiver extends BeaconstacReceiver {
+    private NotificationManager notificationManager;
 
     @Override
     public void exitedBeacon(Context context, MSBeacon beacon) {
@@ -31,6 +33,24 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
     public void campedOnBeacon(Context context, MSBeacon beacon) {
         Log.v(BeaconstacExampleReceiver.class.getName(), "camped on called " + beacon.getBeaconKey());
         sendNotification(context, "Camped " + beacon.getBeaconKey());
+    }
+
+    @Override
+    public void triggeredRule(Context context, String ruleName, ArrayList<MSAction> actions) {
+        Log.v(BeaconstacExampleReceiver.class.getName(), "triggered rule called " + ruleName);
+    }
+
+    @Override
+    public void enteredRegion(Context context, String region) {
+        Log.v(BeaconstacExampleReceiver.class.getName(), "Entered region " + region);
+    }
+
+    @Override
+    public void exitedRegion(Context context, String region) {
+        notificationManager = (NotificationManager)
+                context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+        Log.v(BeaconstacExampleReceiver.class.getName(), "Exited region " + region);
     }
 
     @Override
@@ -52,7 +72,7 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
                     .setContentTitle("BeaconstacExample")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentIntent(pendingIntent).build();
-            NotificationManager notificationManager = (NotificationManager)
+            notificationManager = (NotificationManager)
                     context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(1, mBuilder);
         }

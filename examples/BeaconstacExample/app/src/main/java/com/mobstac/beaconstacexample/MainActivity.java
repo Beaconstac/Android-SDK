@@ -1,6 +1,7 @@
 package com.mobstac.beaconstacexample;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
@@ -10,21 +11,18 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mobstac.beaconstac.callbacks.BeaconstacCallback;
 import com.mobstac.beaconstac.core.Beaconstac;
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
 import com.mobstac.beaconstac.core.MSBLEService;
 import com.mobstac.beaconstac.core.MSConstants;
+import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
-import com.mobstac.beaconstac.utils.MSLogger;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -34,10 +32,9 @@ public class MainActivity extends Activity {
     private ArrayList<MSBeacon> beacons = new ArrayList<MSBeacon>();
 
     private BeaconAdapter beaconAdapter;
-    private ListView beaconList;
     private TextView bCount;
-
     private TextView testCamped;
+    private AlertDialog.Builder builder;
 
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
@@ -75,24 +72,21 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             initList();
         }
+        Beaconstac beaconstac = Beaconstac.getInstance(this);
+        // set region parameters (UUID and unique region identifier)
+        beaconstac.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC", "com.mobstac.beaconstacexample");
+        // start MSBLEService
         startService(new Intent(this, MSBLEService.class));
     }
 
     private void initList() {
-        beaconList      = (ListView) findViewById(R.id.beaconListView);
+        ListView beaconList = (ListView) findViewById(R.id.beaconListView);
         beaconAdapter   = new BeaconAdapter(beacons, this);
         beaconList.setAdapter(beaconAdapter);
 
         bCount = (TextView) findViewById(R.id.beaconCount);
         testCamped = (TextView) findViewById(R.id.CampedView);
         registerBroadcast();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
@@ -136,9 +130,12 @@ public class MainActivity extends Activity {
     private void registerBroadcast() {
         if (!registered) {
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RANGED);
-            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_CAMPED);
-            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RANGED_BEACON);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_CAMPED_BEACON);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_BEACON);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RULE_TRIGGERED);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_ENTERED_REGION);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_REGION);
             registerReceiver(myBroadcastReceiver, intentFilter);
             registered = true;
         }
@@ -171,6 +168,34 @@ public class MainActivity extends Activity {
             testCamped.setText("Camped: " + beacon.getMajor() + ":" + beacon.getMinor());
             beaconAdapter.addBeacon(beacon);
             beaconAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void triggeredRule(Context context, String ruleName, ArrayList<MSAction> actions) {
+            for (MSAction action : actions) {
+                if (action.getType() == MSAction.MSActionType.MSActionTypePopup) {
+                    builder.setTitle(action.getName()).setMessage(action.getMessage());
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+            Toast.makeText(getApplicationContext(), "Rule " + ruleName, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void enteredRegion(Context context, String region) {
+            beaconAdapter.clear();
+            beaconAdapter.notifyDataSetChanged();
+            bCount.setText("" + beacons.size());
+            Toast.makeText(getApplicationContext(), "Entered region", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void exitedRegion(Context context, String region) {
+            beaconAdapter.clear();
+            beaconAdapter.notifyDataSetChanged();
+            bCount.setText("" + beacons.size());
+            Toast.makeText(getApplicationContext(), "Exited region", Toast.LENGTH_SHORT).show();
         }
     };
 }
