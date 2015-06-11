@@ -21,5 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile(name:'beaconstac-release', ext:'aar')
+    compile(name: 'beaconstac-release', ext: 'aar')
+    compile 'com.mcxiaoke.volley:library:1.0.16'
+    compile 'com.google.android.gms:play-services:7.5.0'
 }
