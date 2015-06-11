@@ -61,7 +61,6 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
 ![](images/permissions.png "Permissions")
 8. Add the Beaconstac BLEService to your app manifest:
 
