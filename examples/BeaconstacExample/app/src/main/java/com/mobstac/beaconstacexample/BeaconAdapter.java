@@ -90,7 +90,7 @@ public class BeaconAdapter extends BaseAdapter {
         key.setText("Major: " + beacon.getMajor() + "\t\t\t Minor: " + beacon.getMinor() +
                 " \t\t\t  Mean RSSI: " + beacon.getMeanRSSI());
 
-        if (beacon.getIsCampedOn() == true) {
+        if (beacon.getIsCampedOn()) {
             view.setBackgroundResource(android.R.color.holo_green_light);
         } else {
             view.setBackgroundResource(android.R.color.background_light);
