@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Override the defaults -->
 
     <!-- whether rule processing is enabled -->
-    <bool name="ruleProcessingEnabled">false</bool>
+    <bool name="ruleProcessingEnabled">true</bool>
+
     <!-- time interval between rule syncs -->
     <integer name="ruleSyncInterval">86400</integer>
+
     <!-- events for which rules would be processed -->
     <string-array name="ruleEvents">
         <item>CAMPED</item>
@@ -13,12 +14,14 @@
     </string-array>
 
     <!-- whether analytics is enabled -->
-    <bool name="analyticsEnabled">false</bool>
+    <bool name="analyticsEnabled">true</bool>
+
     <!-- time interval between analytics posting -->
     <integer name="analyticsPostInterval">900</integer>
 
     <!-- Beaconstac API token -->
     <string name="api_key"></string>
+    
     <!-- Organization id -->
     <integer name="organization_id">0</integer>
 </resources>
