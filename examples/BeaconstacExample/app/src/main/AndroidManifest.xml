@@ -25,13 +25,25 @@
 
         <receiver android:name=".BeaconstacExampleReceiver" android:exported="false">
             <intent-filter>
-                <action android:name="com.mobstac.beaconstac.intent.action.RANGED" />
-                <action android:name="com.mobstac.beaconstac.intent.action.EXITED" />
-                <action android:name="com.mobstac.beaconstac.intent.action.CAMPED" />
+                <action android:name="com.mobstac.beaconstac.intent.action.RANGED_BEACON" />
+                <action android:name="com.mobstac.beaconstac.intent.action.CAMPED_BEACON" />
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_BEACON" />
+                <action android:name="com.mobstac.beaconstac.intent.action.TRIGGERED_RULE" />
+                <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_REGION" />
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_REGION" />
             </intent-filter>
         </receiver>
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
+
+        <provider
+            android:name="com.mobstac.beaconstac.provider.MSContentProvider"
+            android:authorities="@string/provider"
+            android:enabled="true"
+            android:exported="false"
+            android:multiprocess="true"
+            android:syncable="true" >
+        </provider>
 
     </application>
 
