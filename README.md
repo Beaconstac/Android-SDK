@@ -23,7 +23,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         compile (name: 'beaconstac-release', ext: 'aar')
         compile 'com.mcxiaoke.volley:library:1.0.16'
 	    compile 'com.google.android.gms:play-services:7.5.0'
-![](images/dependencies.png "Dependencies")
+	    compile 'com.crittercism:crittercism-android-agent:5.0.6'
 5. Refresh all Gradle projects.
 6. Create a file `beaconstac.xml` in the `values` folder containing configurations for Beaconstac SDK. 
 
@@ -52,6 +52,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             
             <!-- Organization id -->
             <integer name="organization_id">0</integer>
+            
+            <!-- Provider authority -->
+		    <string name="provider">com.mobstac.beaconstacexample.provider</string>
         </resources>
 7. Add the following permissions to app manifest:
 
@@ -61,11 +64,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-![](images/permissions.png "Permissions")
 8. Add the Beaconstac BLEService to your app manifest:
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
-![](images/bleservice.png "BLEService")
 9. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon`, `exitedBeacon`, `triggeredRule`, `enteredRegion` and `exitedRegion` events. The `BeaconstacExample` app contains an example of each type - directly using `BeaconstacReceiver` in the activity (this will require registering and unregistering it to receive intents in the activity itself), and extending `BeaconstacReceiver` and registering it to receive `actions` declared in the app manifest.
 10. Add the Beaconstac-provided actions in the app manifest that you wish to listen for, in your BroadcastReceiver. From the `BeaconstacExample` app manifest:
 
@@ -78,24 +79,22 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
                 <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_REGION" />
                 <action android:name="com.mobstac.beaconstac.intent.action.EXITED_REGION" />            </intent-filter>
         </receiver>
-![](images/receiver.png "Receiver")
-11. Add `provider` to the manifest. If you implement your own ContentProvider, please extend `com.mobstac.beaconstac.provider.MSContentProvider`.
+11. Add `provider` to the manifest. Please implement your own ContentProvider that extends `com.mobstac.beaconstac.provider.MSContentProvider`. From the `BeaconstacExample` app:
 
 		<provider
-            android:name="com.mobstac.beaconstac.provider.MSContentProvider"
+            android:name=".MyContentProvider"
             android:authorities="@string/provider"
             android:enabled="true"
             android:exported="false"
             android:multiprocess="true"
             android:syncable="true" >
-        </provider>
 12. To monitor beacon regions, configure the `UUID` and `region_identifier`.
 
         // set region parameters (UUID and unique region identifier)
         Beaconstac.getInstance(this)
 	            .setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
-13. Call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity after configuring the `UUID` and `region_identifier` as mentioned in the last step.
+13. Call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity after configuring the `UUID` and `region_identifier` as mentioned in the last step. Start the Service in a new thread.
 
         // start MSBLEService
         startService(new Intent(this, MSBLEService.class));
