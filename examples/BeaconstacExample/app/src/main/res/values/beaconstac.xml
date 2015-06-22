@@ -24,4 +24,7 @@
 
     <!-- Organization id -->
     <integer name="organization_id">0</integer>
+
+    <!-- Provider authority -->
+    <string name="provider">com.mobstac.beaconstacexample.provider</string>
 </resources>
