@@ -41,7 +41,7 @@
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
 
         <provider
-            android:name="com.mobstac.beaconstac.provider.MSContentProvider"
+            android:name=".MyContentProvider"
             android:authorities="@string/provider"
             android:enabled="true"
             android:exported="false"
