@@ -46,6 +46,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             
             <!-- time interval between analytics posting -->
             <integer name="analyticsPostInterval">900</integer>
+            
+            <!-- Whether bug tracking is enabled -->
+		    <bool name="bugTrackingEnabled">true</bool>
 
             <!-- Beaconstac API token -->
             <string name="api_key"></string>
