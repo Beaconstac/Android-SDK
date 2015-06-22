@@ -23,6 +23,8 @@ import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.Executors;
 
 
 public class MainActivity extends Activity {
@@ -34,7 +36,6 @@ public class MainActivity extends Activity {
     private BeaconAdapter beaconAdapter;
     private TextView bCount;
     private TextView testCamped;
-    private AlertDialog.Builder builder;
 
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
@@ -76,9 +77,14 @@ public class MainActivity extends Activity {
         // set region parameters (UUID and unique region identifier)
         Beaconstac.getInstance(this).
                 setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
-                "com.mobstac.beaconstacexample");
+                        "com.mobstac.beaconstacexample");
         // start MSBLEService
-        startService(new Intent(this, MSBLEService.class));
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                startService(new Intent(getApplicationContext(), MSBLEService.class));
+            }
+        });
     }
 
     private void initList() {
@@ -174,11 +180,16 @@ public class MainActivity extends Activity {
 
         @Override
         public void triggeredRule(Context context, String ruleName, ArrayList<MSAction> actions) {
+            HashMap<String, Object> messageMap;
             for (MSAction action : actions) {
-                if (action.getType() == MSAction.MSActionType.MSActionTypePopup) {
-                    builder.setTitle(action.getName()).setMessage(action.getMessage());
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                switch (action.getType()) {
+                    case MSActionTypePopup:
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        messageMap = action.getMessage();
+                        builder.setTitle(action.getName()).setMessage((String) messageMap.get("text"));
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        break;
                 }
             }
             Toast.makeText(getApplicationContext(), "Rule " + ruleName, Toast.LENGTH_SHORT).show();
