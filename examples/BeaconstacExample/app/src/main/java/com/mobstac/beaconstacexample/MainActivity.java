@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 
         // set region parameters (UUID and unique region identifier)
         Beaconstac.getInstance(this).
-                setRegionParams("B9407F30-F5F8-466E-AFF9-25556B57FE6D", //"F94DBB23-2266-7822-3782-57BEAC0952AC",
+                setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                         "com.mobstac.beaconstacexample");
         // start MSBLEService
         Executors.newSingleThreadExecutor().execute(new Runnable() {
@@ -162,6 +162,8 @@ public class MainActivity extends Activity {
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RULE_TRIGGERED);
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_ENTERED_REGION);
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_REGION);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_ENTERED_GEOFENCE);
+            intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_GEOFENCE);
             registerReceiver(myBroadcastReceiver, intentFilter);
             registered = true;
         }

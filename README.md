@@ -82,7 +82,10 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
                 <action android:name="com.mobstac.beaconstac.intent.action.EXITED_BEACON" />
                 <action android:name="com.mobstac.beaconstac.intent.action.TRIGGERED_RULE" />
                 <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_REGION" />
-                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_REGION" />            </intent-filter>
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_REGION" />
+                <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_GEOFENCE" />
+                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_GEOFENCE" />
+            </intent-filter>
         </receiver>
 11. Add `provider` to the manifest. Please implement your own ContentProvider that extends `com.mobstac.beaconstac.provider.MSContentProvider`. From the `BeaconstacExample` app:
 
