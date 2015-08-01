@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +21,11 @@ import com.mobstac.beaconstac.core.Beaconstac;
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
 import com.mobstac.beaconstac.core.MSBLEService;
 import com.mobstac.beaconstac.core.MSConstants;
+import com.mobstac.beaconstac.core.MSPlace;
 import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
+import com.mobstac.beaconstac.models.MSCard;
+import com.mobstac.beaconstac.models.MSMedia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,11 +41,13 @@ public class MainActivity extends Activity {
     private BeaconAdapter beaconAdapter;
     private TextView bCount;
     private TextView testCamped;
+    private Intent BLEServiceIntent;
 
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
 
     private boolean registered = false;
+    private boolean isPopupVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +81,17 @@ public class MainActivity extends Activity {
             initList();
         }
 
+        BLEServiceIntent = new Intent(getApplicationContext(), MSBLEService.class);
+
         // set region parameters (UUID and unique region identifier)
         Beaconstac.getInstance(this).
-                setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
+                setRegionParams("B9407F30-F5F8-466E-AFF9-25556B57FE6D", //"F94DBB23-2266-7822-3782-57BEAC0952AC",
                         "com.mobstac.beaconstacexample");
         // start MSBLEService
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                startService(new Intent(getApplicationContext(), MSBLEService.class));
+                startService(BLEServiceIntent);
             }
         });
     }
@@ -104,6 +113,7 @@ public class MainActivity extends Activity {
         beaconAdapter.notifyDataSetChanged();
         bCount.setText("" + beacons.size());
         unregisterBroadcast();
+        isPopupVisible = true;
     }
 
     @Override
@@ -117,12 +127,20 @@ public class MainActivity extends Activity {
         initList();
         bCount.setText("" + beacons.size());
         registerBroadcast();
+        isPopupVisible = false;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterBroadcast();
+
+        // Uncomment the following lines in order to
+        // stop the service when this activity is destroyed
+        /*
+        if (BLEServiceIntent != null)
+            stopService(BLEServiceIntent);
+        */
     }
 
     // Callback intent results
@@ -165,8 +183,8 @@ public class MainActivity extends Activity {
 
         @Override
         public void rangedBeacons(Context context, ArrayList<MSBeacon> rangedBeacons) {
-            bCount.setText("" + rangedBeacons.size());
             beaconAdapter.clear();
+            bCount.setText("" + rangedBeacons.size());
             beacons.addAll(rangedBeacons);
             beaconAdapter.notifyDataSetChanged();
         }
@@ -181,18 +199,85 @@ public class MainActivity extends Activity {
         @Override
         public void triggeredRule(Context context, String ruleName, ArrayList<MSAction> actions) {
             HashMap<String, Object> messageMap;
-            for (MSAction action : actions) {
-                switch (action.getType()) {
-                    case MSActionTypePopup:
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        messageMap = action.getMessage();
-                        builder.setTitle(action.getName()).setMessage((String) messageMap.get("text"));
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        break;
+            AlertDialog.Builder dialogBuilder;
+
+            if (!isPopupVisible) {
+                for (MSAction action : actions) {
+
+                    messageMap = action.getMessage();
+
+                    switch (action.getType()) {
+                        // handle action type Popup
+                        case MSActionTypePopup:
+                            dialogBuilder = new AlertDialog.Builder(context);
+                            messageMap = action.getMessage();
+                            dialogBuilder.setTitle(action.getName()).setMessage((String) messageMap.get("text"));
+                            AlertDialog dialog = dialogBuilder.create();
+                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    isPopupVisible = false;
+                                }
+                            });
+                            dialog.show();
+                            isPopupVisible = true;
+                            break;
+
+                        // handle the action type Card
+                        case MSActionTypeCard:
+                            MSCard card = (MSCard) messageMap.get("card");
+
+                            switch (card.getType()) {
+                                case MSCardTypePhoto:
+                                case MSCardTypeMedia:
+                                    MSMedia m = card.getMediaArray().get(0);
+                                    String src = m.getMediaUrl().toString();
+
+                                    dialogBuilder = new AlertDialog.Builder(context);
+                                    dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            isPopupVisible = false;
+                                        }
+                                    });
+
+                                    final WebView webView = new WebView(context);
+                                    webView.loadUrl(src);
+
+                                    dialogBuilder.setView(webView);
+                                    dialogBuilder.setPositiveButton("Close", null);
+                                    dialogBuilder.show();
+
+                                    isPopupVisible = true;
+                            }
+                            break;
+
+                        // handle action type webpage
+                        case MSActionTypeWebpage:
+                            if (!isPopupVisible) {
+                                dialogBuilder = new AlertDialog.Builder(context);
+                                dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                        isPopupVisible = false;
+                                    }
+                                });
+
+                                final WebView webView = new WebView(context);
+                                webView.loadUrl(messageMap.get("url").toString());
+
+                                dialogBuilder.setView(webView);
+                                dialogBuilder.setPositiveButton("Close", null);
+                                dialogBuilder.show();
+
+                                isPopupVisible = true;
+
+                            }
+                            break;
+                    }
                 }
+                Toast.makeText(getApplicationContext(), "Rule " + ruleName, Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getApplicationContext(), "Rule " + ruleName, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -209,6 +294,16 @@ public class MainActivity extends Activity {
             beaconAdapter.notifyDataSetChanged();
             bCount.setText("" + beacons.size());
             Toast.makeText(getApplicationContext(), "Exited region", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void enteredGeofence(Context context, ArrayList<MSPlace> arrayList) {
+            Toast.makeText(getApplicationContext(), "Entered geofence", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void exitedGeofence(Context context, ArrayList<MSPlace> arrayList) {
+            Toast.makeText(getApplicationContext(), "Exited geofence", Toast.LENGTH_SHORT).show();
         }
     };
 }
