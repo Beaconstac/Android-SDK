@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
+import com.mobstac.beaconstac.core.MSPlace;
 import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
 
@@ -51,6 +52,16 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
                 context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
         Log.v(BeaconstacExampleReceiver.class.getName(), "Exited region " + region);
+    }
+
+    @Override
+    public void enteredGeofence(Context context, ArrayList<MSPlace> arrayList) {
+        Log.v(BeaconstacExampleReceiver.class.getName(), "Entered geofence");
+    }
+
+    @Override
+    public void exitedGeofence(Context context, ArrayList<MSPlace> arrayList) {
+        Log.v(BeaconstacExampleReceiver.class.getName(), "Exited geofence");
     }
 
     @Override
