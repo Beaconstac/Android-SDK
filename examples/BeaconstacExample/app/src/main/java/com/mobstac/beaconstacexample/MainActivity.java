@@ -232,25 +232,29 @@ public class MainActivity extends Activity {
                             switch (card.getType()) {
                                 case MSCardTypePhoto:
                                 case MSCardTypeMedia:
-                                    MSMedia m = card.getMediaArray().get(0);
-                                    String src = m.getMediaUrl().toString();
+                                    ArrayList<MSMedia> mediaArray = card.getMediaArray();
+                                    if (mediaArray.size() > 0) {
+                                        MSMedia m = mediaArray.get(0);
 
-                                    dialogBuilder = new AlertDialog.Builder(context);
-                                    dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            isPopupVisible = false;
-                                        }
-                                    });
+                                        String src = m.getMediaUrl().toString();
 
-                                    final WebView webView = new WebView(context);
-                                    webView.loadUrl(src);
+                                        dialogBuilder = new AlertDialog.Builder(context);
+                                        dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                isPopupVisible = false;
+                                            }
+                                        });
 
-                                    dialogBuilder.setView(webView);
-                                    dialogBuilder.setPositiveButton("Close", null);
-                                    dialogBuilder.show();
+                                        final WebView webView = new WebView(context);
+                                        webView.loadUrl(src);
 
-                                    isPopupVisible = true;
+                                        dialogBuilder.setView(webView);
+                                        dialogBuilder.setPositiveButton("Close", null);
+                                        dialogBuilder.show();
+
+                                        isPopupVisible = true;
+                                    }
                             }
                             break;
 
