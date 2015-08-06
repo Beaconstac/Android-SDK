@@ -99,11 +99,15 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 12. To monitor beacon regions, configure the `UUID` and `region_identifier`.
 
         // set region parameters (UUID and unique region identifier)
-        Beaconstac.getInstance(this)
-	            .setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
+        Beaconstac bstacInstance = Beaconstac.getInstance(this);
+        bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
-13. Call `startService` on `com.mobstac.beaconstac.core.MSBLEService` in the `onCreate` method of the Application or MainActivity after configuring the `UUID` and `region_identifier` as mentioned in the last step. Start the Service in a new thread.
+13. Call `startRangingBeacons` on the `Beaconstac` instance after configuring the params as mentioned in the previous step.
 
-        // start MSBLEService
-        startService(new Intent(this, MSBLEService.class));
-14. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo. Remember to set `organization_id` and `api_key` in `beaconstac.xml`.
+        // start scanning
+        bstacInstance.startRangingBeacons();
+14. If you want to stop scanning for beacons, call `stopRangingBeacons` on the `Beaconstac` instance.
+
+        // stop scanning
+        bstacInstance.stopRangingBeacons();
+15. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo. Remember to set `organization_id` and `api_key` in `beaconstac.xml`.
