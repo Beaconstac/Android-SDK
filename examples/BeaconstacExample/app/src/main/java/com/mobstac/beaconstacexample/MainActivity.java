@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.mobstac.beaconstac.core.Beaconstac;
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
-import com.mobstac.beaconstac.core.MSBLEService;
 import com.mobstac.beaconstac.core.MSConstants;
 import com.mobstac.beaconstac.core.MSPlace;
 import com.mobstac.beaconstac.models.MSAction;
@@ -29,7 +28,6 @@ import com.mobstac.beaconstac.models.MSMedia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.Executors;
 
 
 public class MainActivity extends Activity {
@@ -41,7 +39,7 @@ public class MainActivity extends Activity {
     private BeaconAdapter beaconAdapter;
     private TextView bCount;
     private TextView testCamped;
-    private Intent BLEServiceIntent;
+    Beaconstac bstacInstance;
 
     private BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
@@ -81,19 +79,12 @@ public class MainActivity extends Activity {
             initList();
         }
 
-        BLEServiceIntent = new Intent(getApplicationContext(), MSBLEService.class);
-
         // set region parameters (UUID and unique region identifier)
-        Beaconstac.getInstance(this).
-                setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
-                        "com.mobstac.beaconstacexample");
-        // start MSBLEService
-        Executors.newSingleThreadExecutor().execute(new Runnable() {
-            @Override
-            public void run() {
-                startService(BLEServiceIntent);
-            }
-        });
+        bstacInstance = Beaconstac.getInstance(this);
+        bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
+                "com.mobstac.beaconstacexample");
+        // start scanning
+        bstacInstance.startRangingBeacons();
     }
 
     private void initList() {
@@ -134,12 +125,11 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterBroadcast();
-
-        // Uncomment the following lines in order to
-        // stop the service when this activity is destroyed
+        // uncomment this if you want to
+        // stop scanning when the app closes
         /*
-        if (BLEServiceIntent != null)
-            stopService(BLEServiceIntent);
+        if (bstacInstance != null)
+            bstacInstance.stopRangingBeacons();
         */
     }
 
