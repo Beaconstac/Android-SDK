@@ -111,4 +111,6 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
         // stop scanning
         bstacInstance.stopRangingBeacons();
-15. You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo. Remember to set `organization_id` and `api_key` in `beaconstac.xml`.
+15. You can also dynamically set `organization_id` and `api_key` using `setOrgId` and `setDevToken` methods on the `Beaconstac` instance.
+
+You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
