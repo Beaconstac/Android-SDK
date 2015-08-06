@@ -95,6 +95,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             android:enabled="true"
             android:exported="false"
             android:multiprocess="true"
+            android:grantUriPermissions="true"
             android:syncable="true" >
 12. To monitor beacon regions, configure the `UUID` and `region_identifier`.
 

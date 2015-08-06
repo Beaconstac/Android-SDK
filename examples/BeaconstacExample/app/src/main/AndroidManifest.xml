@@ -51,6 +51,7 @@
             android:enabled="true"
             android:exported="false"
             android:multiprocess="true"
+            android:grantUriPermissions="true"
             android:syncable="true" >
         </provider>
 
