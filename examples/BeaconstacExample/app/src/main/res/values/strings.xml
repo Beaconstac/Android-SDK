@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">BeaconstacExample</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Beaconstac Example</string>
     <string name="ble_not_supported">BLE not supported on this device.</string>
-    <!-- Override the defaults -->
 </resources>
