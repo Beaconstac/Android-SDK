@@ -34,7 +34,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             <!-- whether rule processing is enabled -->
             <bool name="ruleProcessingEnabled">true</bool>
             
-            <!-- time interval between rule syncs -->
+            <!-- time interval in seconds between rule syncs -->
             <integer name="ruleSyncInterval">86400</integer>
             
             <!-- events for which rules would be processed -->
@@ -46,7 +46,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
             <!-- whether analytics is enabled -->
             <bool name="analyticsEnabled">true</bool>
             
-            <!-- time interval between analytics posting -->
+            <!-- time interval in seconds between analytics posting -->
             <integer name="analyticsPostInterval">900</integer>
             
             <!-- Whether bug tracking is enabled -->
