@@ -1,0 +1,25 @@
+var classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place =
+[
+    [ "MSPlace", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a769070e8ff0aba6d9409643addd88408", null ],
+    [ "MSPlace", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a2f4c53dc4e7bced1b688c4f86f18a9d0", null ],
+    [ "MSPlace", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a1966c88f6346afc4c664fffcde7e5ef7", null ],
+    [ "buildGoogleApiClient", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a834a8f4f80bc8a1f4b10f483d839f102", null ],
+    [ "describeContents", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#acbb49790c64eedf1c220962092a21a8d", null ],
+    [ "getAddress", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#ae0bf6ca889c8b7d429c6336bc5d5dae0", null ],
+    [ "getAllPlaces", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a94da19370b7c398cf2c2cc183c85479c", null ],
+    [ "getLatitude", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a390347d61d3a10fada04764a00dc5d8a", null ],
+    [ "getLongitude", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#ad5321024772bad76f90179fcb58a3587", null ],
+    [ "getName", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#ac81823e7b13670bcd333337db9f70e3b", null ],
+    [ "getPlaceID", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#ae98f80b52790223be0e8ed8477978cc6", null ],
+    [ "getRadius", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a6bd677941ed19a72e329eefd96414073", null ],
+    [ "onConnected", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a0d6a3a1e1f2fbb5be44b00b49ad2c84c", null ],
+    [ "onConnectionFailed", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#adcde476e7f062f7b3254c491c54fe0d2", null ],
+    [ "onConnectionSuspended", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#aa4f47156819b702c2d70d872be0646c7", null ],
+    [ "onResult", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a5e41cd247ce6bf92a88b0f8b0de5291a", null ],
+    [ "startGeofenceMonitoring", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a6b630f7cb6b928f7114225863d9fe1e0", null ],
+    [ "stopGeofenceMonitoring", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#aa5c762010aae2613ed1508ce8fb38d88", null ],
+    [ "syncPlacesWithServer", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a299ce7f25d9e446c0e160d5b7265c63f", null ],
+    [ "writeToParcel", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a6903bde7c706709298e0025a2d9ae59f", null ],
+    [ "mGeofenceList", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a017075a8b5bba1c66d3f6cb1ae3b59cb", null ],
+    [ "mGoogleApiClient", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#ad533b66870a9d20bd25ae47fa4c9b7c2", null ]
+];

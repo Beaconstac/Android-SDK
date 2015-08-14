@@ -1,0 +1,4 @@
+var interfacecom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor_1_1_m_s_rule_processor_callback =
+[
+    [ "triggeredRule", "interfacecom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor_1_1_m_s_rule_processor_callback.html#ae4385b6f914f781877903c60fb67f63f", null ]
+];
