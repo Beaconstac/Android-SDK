@@ -1,7 +1,6 @@
 var hierarchy =
 [
     [ "com.mobstac.beaconstac.core.Beaconstac", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html", null ],
-    [ "com.mobstac.beaconstac.BuildConfig", "classcom_1_1mobstac_1_1beaconstac_1_1_build_config.html", null ],
     [ "ConnectionCallbacks", null, [
       [ "com.mobstac.beaconstac.core.MSPlace", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html", null ]
     ] ],
@@ -34,8 +33,8 @@ var hierarchy =
     [ "OnConnectionFailedListener", null, [
       [ "com.mobstac.beaconstac.core.MSPlace", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html", null ]
     ] ],
-    [ "com.mobstac.beaconstac.R", "classcom_1_1mobstac_1_1beaconstac_1_1_r.html", null ],
     [ "com.mobstac.beaconstac.utils.MSReachability.ReachabilityState", "enumcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_reachability_1_1_reachability_state.html", null ],
+    [ "com.mobstac.beaconstac.models.MSAction.WebhookHandler", "interfacecom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_webhook_handler.html", null ],
     [ "Binder", null, [
       [ "com.mobstac.beaconstac.core.MSBLEService.MSBLEServiceBinder", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_b_l_e_service_1_1_m_s_b_l_e_service_binder.html", null ]
     ] ],

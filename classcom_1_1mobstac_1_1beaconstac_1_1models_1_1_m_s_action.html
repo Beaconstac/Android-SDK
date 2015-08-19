@@ -32,7 +32,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Beaconstac Android
-   &#160;<span id="projectnumber">0.9.6</span>
+   &#160;<span id="projectnumber">0.9.7</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,7 +92,6 @@ $(document).ready(function(){initNavTree('classcom_1_1mobstac_1_1beaconstac_1_1m
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">com.mobstac.beaconstac.models.MSAction Class Reference</div>  </div>
@@ -112,14 +111,15 @@ Inheritance diagram for com.mobstac.beaconstac.models.MSAction:</div>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enumcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_m_s_action_type.html">MSActionType</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacecom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_webhook_handler.html">WebhookHandler</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab3d6bb015e562fb6503fad996970aadc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3d6bb015e562fb6503fad996970aadc"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MSAction</b> (int id, String actionName, int ruleID, String ruleName, int actionType, JSONObject meta, Date created, Date updated, String status)</td></tr>
 <tr class="separator:ab3d6bb015e562fb6503fad996970aadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af273620bbe497ad1d4d6e3e8697a5c8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af273620bbe497ad1d4d6e3e8697a5c8a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getActionID</b> ()</td></tr>
+<tr class="memitem:af273620bbe497ad1d4d6e3e8697a5c8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#af273620bbe497ad1d4d6e3e8697a5c8a">getActionID</a> ()</td></tr>
 <tr class="separator:af273620bbe497ad1d4d6e3e8697a5c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72a6b448c2dce41765bc49356a8835a3"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a72a6b448c2dce41765bc49356a8835a3">getName</a> ()</td></tr>
 <tr class="separator:a72a6b448c2dce41765bc49356a8835a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,57 +127,41 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getActionID</b> ()</td
 <tr class="separator:a1669f3b9d6dbf3c3bbfa3719f9dfa5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad784adf5490741352a0f22827155bc80"><td class="memItemLeft" align="right" valign="top">HashMap&lt; String, Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#ad784adf5490741352a0f22827155bc80">getMessage</a> ()</td></tr>
 <tr class="separator:ad784adf5490741352a0f22827155bc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97d6b7330721f9c3005ad62831e9f768"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97d6b7330721f9c3005ad62831e9f768"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMessage</b> (HashMap&lt; String, Object &gt; msg)</td></tr>
+<tr class="memitem:a97d6b7330721f9c3005ad62831e9f768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a97d6b7330721f9c3005ad62831e9f768">setMessage</a> (HashMap&lt; String, Object &gt; msg)</td></tr>
 <tr class="separator:a97d6b7330721f9c3005ad62831e9f768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d0bea0b0f0b78f53f24e4d87929b91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a82d0bea0b0f0b78f53f24e4d87929b91">getRuleID</a> ()</td></tr>
 <tr class="separator:a82d0bea0b0f0b78f53f24e4d87929b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03f643254f5bbb369edf080104398fdf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03f643254f5bbb369edf080104398fdf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRuleID</b> (int id)</td></tr>
+<tr class="memitem:a03f643254f5bbb369edf080104398fdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a03f643254f5bbb369edf080104398fdf">setRuleID</a> (int id)</td></tr>
 <tr class="separator:a03f643254f5bbb369edf080104398fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2641594a4c25f9a4bcf414fe30a72f1"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#ae2641594a4c25f9a4bcf414fe30a72f1">getRuleName</a> ()</td></tr>
 <tr class="separator:ae2641594a4c25f9a4bcf414fe30a72f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9f2f24117992296e002b28f1970b7ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9f2f24117992296e002b28f1970b7ce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRuleName</b> (String name)</td></tr>
+<tr class="memitem:af9f2f24117992296e002b28f1970b7ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#af9f2f24117992296e002b28f1970b7ce">setRuleName</a> (String name)</td></tr>
 <tr class="separator:af9f2f24117992296e002b28f1970b7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee9c039c738a8b4ed2fc2a8acbf57ca0"><td class="memItemLeft" align="right" valign="top">JSONObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#aee9c039c738a8b4ed2fc2a8acbf57ca0">getMeta</a> ()</td></tr>
 <tr class="separator:aee9c039c738a8b4ed2fc2a8acbf57ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac947c092352123f4fb93bb8875ab8b16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac947c092352123f4fb93bb8875ab8b16"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMeta</b> (JSONObject meta)</td></tr>
+<tr class="memitem:ac947c092352123f4fb93bb8875ab8b16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#ac947c092352123f4fb93bb8875ab8b16">setMeta</a> (JSONObject meta)</td></tr>
 <tr class="separator:ac947c092352123f4fb93bb8875ab8b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72415ce0108121b1ebdaf25559c173da"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a72415ce0108121b1ebdaf25559c173da">getStatus</a> ()</td></tr>
 <tr class="separator:a72415ce0108121b1ebdaf25559c173da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8cd28b0f411c08501ba786f3f856a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a8cd28b0f411c08501ba786f3f856a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStatus</b> (String newstat)</td></tr>
+<tr class="memitem:a5a8cd28b0f411c08501ba786f3f856a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a5a8cd28b0f411c08501ba786f3f856a2">setStatus</a> (String newstat)</td></tr>
 <tr class="separator:a5a8cd28b0f411c08501ba786f3f856a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f883a38bc94fcfecc536c457234bcc8"><td class="memItemLeft" align="right" valign="top">Date&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a1f883a38bc94fcfecc536c457234bcc8">getCreated</a> ()</td></tr>
 <tr class="separator:a1f883a38bc94fcfecc536c457234bcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7020602eef817f73b5b73fc73b28c57f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7020602eef817f73b5b73fc73b28c57f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCreated</b> (Date date)</td></tr>
+<tr class="memitem:a7020602eef817f73b5b73fc73b28c57f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a7020602eef817f73b5b73fc73b28c57f">setCreated</a> (Date date)</td></tr>
 <tr class="separator:a7020602eef817f73b5b73fc73b28c57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30e79ef7b9f7f82beb4d4c05a0117709"><td class="memItemLeft" align="right" valign="top">Date&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a30e79ef7b9f7f82beb4d4c05a0117709">getUpdated</a> ()</td></tr>
 <tr class="separator:a30e79ef7b9f7f82beb4d4c05a0117709"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48be898ae338446c98b892cb0775452a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48be898ae338446c98b892cb0775452a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUpdated</b> (Date date)</td></tr>
+<tr class="memitem:a48be898ae338446c98b892cb0775452a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a48be898ae338446c98b892cb0775452a">setUpdated</a> (Date date)</td></tr>
 <tr class="separator:a48be898ae338446c98b892cb0775452a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf673e7b370f71732d7e8f3747bb912c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#acf673e7b370f71732d7e8f3747bb912c">executeWebhook</a> (final Context context, HashMap&lt; String, String &gt; postParams, final HashMap&lt; String, String &gt; additionalHeaders, final <a class="el" href="interfacecom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_webhook_handler.html">WebhookHandler</a> handler)  throws MSException </td></tr>
+<tr class="separator:acf673e7b370f71732d7e8f3747bb912c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1d0d8053d5a9d837c27f94949731b3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1d0d8053d5a9d837c27f94949731b3c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MSAction</b> (Parcel p)</td></tr>
 <tr class="separator:ab1d0d8053d5a9d837c27f94949731b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a488d64e33ad44977eb8ec1b93d35abb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a488d64e33ad44977eb8ec1b93d35abb8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>describeContents</b> ()</td></tr>
-<tr class="separator:a488d64e33ad44977eb8ec1b93d35abb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdae0aa2a448de871b99b171eb00d74b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdae0aa2a448de871b99b171eb00d74b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeToParcel</b> (Parcel dest, int flags)</td></tr>
-<tr class="separator:afdae0aa2a448de871b99b171eb00d74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base.html">com.mobstac.beaconstac.models.ModelBase</a></td></tr>
 <tr class="memitem:abcae77fde52668dea00f51c45fc4aacd inherit pub_methods_classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcae77fde52668dea00f51c45fc4aacd"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ModelBase</b> (Object...objects)</td></tr>
 <tr class="separator:abcae77fde52668dea00f51c45fc4aacd inherit pub_methods_classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab788dcb10ac2f9994d643207279f06fd"><td class="memItemLeft" align="right" valign="top">static final Creator&lt; <a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html">MSAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CREATOR</b></td></tr>
-<tr class="separator:ab788dcb10ac2f9994d643207279f06fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -190,6 +174,70 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
 <tr class="separator:a4b0607cb42c946ab49d76cb41337eb7b inherit pro_static_attribs_classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_model_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="acf673e7b370f71732d7e8f3747bb912c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.executeWebhook </td>
+          <td>(</td>
+          <td class="paramtype">final Context&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HashMap&lt; String, String &gt;&#160;</td>
+          <td class="paramname"><em>postParams</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final HashMap&lt; String, String &gt;&#160;</td>
+          <td class="paramname"><em>additionalHeaders</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final <a class="el" href="interfacecom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_webhook_handler.html">WebhookHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_exception.html">MSException</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This method must be called when action type is webhook. This posts data to the URL configured in Beaconstac developer portal. Throws MSException if called on an action that is not of type Webhook.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>An instance of context </td></tr>
+    <tr><td class="paramname">postParams</td><td>A dictionary of data that you want to post to the URL. Please note that timestamp and data available in factsDictionary is automatically posted. </td></tr>
+    <tr><td class="paramname">additionalHeaders</td><td>A dictionary of HTTP headers with values. Plesae note that HTTP headers sent from the portal are set by default </td></tr>
+    <tr><td class="paramname">handler</td><td>A class that implements <a class="el" href="interfacecom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action_1_1_webhook_handler.html">WebhookHandler</a> to take care of success and error handlers </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af273620bbe497ad1d4d6e3e8697a5c8a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int com.mobstac.beaconstac.models.MSAction.getActionID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the ID of the action </p>
+
+</div>
+</div>
 <a class="anchor" id="a1f883a38bc94fcfecc536c457234bcc8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +250,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the date when the action was created </p>
+<dl class="section return"><dt>Returns</dt><dd>the date when the action was created </dd></dl>
 
 </div>
 </div>
@@ -218,7 +266,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the message of the action. This is a HashMap. Message HashMap can have keys: text, url depending on the type of action </p>
+<p>Returns the message of the action. This is a HashMap. Message HashMap can have keys: text, url depending on the type of action </p>
 
 </div>
 </div>
@@ -234,7 +282,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A dictionary that contains meta information associated with the action </p>
+<dl class="section return"><dt>Returns</dt><dd>A dictionary that contains meta information associated with the action </dd></dl>
 
 </div>
 </div>
@@ -250,7 +298,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the name of the action </p>
+<p>Returns the name of the action </p>
 
 </div>
 </div>
@@ -266,7 +314,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the rule ID associated to the action </p>
+<p>Returns the rule ID associated to the action </p>
 
 </div>
 </div>
@@ -282,7 +330,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the name of the rule this action is associated with </p>
+<p>Returns the name of the rule this action is associated with </p>
 
 </div>
 </div>
@@ -298,7 +346,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the status of action This can have following values - A - active P - paused <a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1_r.html">R</a> - removed </p>
+<dl class="section return"><dt>Returns</dt><dd>the status of action This can have following values - A - active P - paused R - removed </dd></dl>
 
 </div>
 </div>
@@ -314,7 +362,7 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the type of the action. This can have values: popup, webpage, video, audio, custom </p>
+<p>Returns the type of the action. This can have values: popup, webpage, video, audio, custom </p>
 
 </div>
 </div>
@@ -330,52 +378,174 @@ static final String[]&#160;</td><td class="memItemRight" valign="bottom"><b>base
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Represents the date when the action was last updated </p>
+<dl class="section return"><dt>Returns</dt><dd>the date when the action was last updated </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ab788dcb10ac2f9994d643207279f06fd"></a>
+<a class="anchor" id="a7020602eef817f73b5b73fc73b28c57f"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final Creator&lt;<a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html">MSAction</a>&gt; com.mobstac.beaconstac.models.MSAction.CREATOR</td>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setCreated </td>
+          <td>(</td>
+          <td class="paramtype">Date&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> Creator&lt;MSAction&gt;() {</div>
-<div class="line">        @Override</div>
-<div class="line">        <span class="keyword">public</span> MSAction createFromParcel(Parcel source) {</div>
-<div class="line">            <span class="keywordflow">return</span> <span class="keyword">new</span> MSAction(source);</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        @Override</div>
-<div class="line">        <span class="keyword">public</span> MSAction[] newArray(<span class="keywordtype">int</span> size) {</div>
-<div class="line">            <span class="keywordflow">return</span> <span class="keyword">new</span> MSAction[size];</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-</div><!-- fragment -->
+<p>Set the date when the action was created </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a97d6b7330721f9c3005ad62831e9f768"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setMessage </td>
+          <td>(</td>
+          <td class="paramtype">HashMap&lt; String, Object &gt;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the message of the action. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>HashMap with keys text, url etc. depending on the type of action </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac947c092352123f4fb93bb8875ab8b16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setMeta </td>
+          <td>(</td>
+          <td class="paramtype">JSONObject&#160;</td>
+          <td class="paramname"><em>meta</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set meta dictionary </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">meta</td><td>JSON Dictionary </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a03f643254f5bbb369edf080104398fdf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setRuleID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the rule id </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>rule id </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af9f2f24117992296e002b28f1970b7ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setRuleName </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the name of the rule this action is associated with </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>rule name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5a8cd28b0f411c08501ba786f3f856a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setStatus </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>newstat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the action status </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newstat</td><td>new status </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a48be898ae338446c98b892cb0775452a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.mobstac.beaconstac.models.MSAction.setUpdated </td>
+          <td>(</td>
+          <td class="paramtype">Date&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the date when the action was last updated </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td>updated date </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/bhashkar/AndroidStudioProjects/BeaconstacDemo/beaconstac/src/main/java/com/mobstac/beaconstac/models/MSAction.java</li>
+<li>MSAction.java</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>com</b></li><li class="navelem"><b>mobstac</b></li><li class="navelem"><a class="el" href="namespacecom_1_1mobstac_1_1beaconstac.html">beaconstac</a></li><li class="navelem"><b>models</b></li><li class="navelem"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html">MSAction</a></li>
-    <li class="footer">Generated on Fri Aug 14 2015 13:01:34 for Beaconstac Android by
+    <li class="navelem"><b>com</b></li><li class="navelem"><b>mobstac</b></li><li class="navelem"><b>beaconstac</b></li><li class="navelem"><b>models</b></li><li class="navelem"><a class="el" href="classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html">MSAction</a></li>
+    <li class="footer">Generated on Wed Aug 19 2015 19:09:54 for Beaconstac Android by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

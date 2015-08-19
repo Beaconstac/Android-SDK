@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['getactionid',['getActionID',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#af273620bbe497ad1d4d6e3e8697a5c8a',1,'com::mobstac::beaconstac::models::MSAction']]],
   ['getallkeys',['getAllKeys',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_shared_preference.html#acd700cc04c29fd2867fed7014960221c',1,'com::mobstac::beaconstac::utils::MSSharedPreference']]],
   ['getallplaces',['getAllPlaces',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a94da19370b7c398cf2c2cc183c85479c',1,'com::mobstac::beaconstac::core::MSPlace']]],
   ['getbeaconkey',['getBeaconKey',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a5f3263261df466ef0bb94dcd69ba9e26',1,'com::mobstac::beaconstac::models::MSBeacon']]],
