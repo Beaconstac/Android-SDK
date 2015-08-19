@@ -22,7 +22,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
         compile (name: 'beaconstac-release', ext: 'aar')
         compile 'com.mcxiaoke.volley:library:1.0.16'
-	    compile 'com.google.android.gms:play-services:7.5.0'
+	    compile 'com.google.android.gms:play-services:7.8.0'
 	    compile 'com.crittercism:crittercism-android-agent:5.0.6'
 5. Refresh all Gradle projects.
 6. Create a file `beaconstac.xml` in the `values` folder containing configurations for Beaconstac SDK. 
