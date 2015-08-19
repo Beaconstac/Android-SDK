@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
 import com.mobstac.beaconstac.models.MSCard;
 import com.mobstac.beaconstac.models.MSMedia;
+import com.mobstac.beaconstac.utils.MSException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,7 +86,16 @@ public class MainActivity extends Activity {
         bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
         // start scanning
-        bstacInstance.startRangingBeacons();
+        try {
+            bstacInstance.startRangingBeacons();
+        } catch (MSException e) {
+            // handle for older devices
+            TextView rangedView = (TextView) findViewById(R.id.RangedView);
+            rangedView.setText(R.string.ble_not_supported);
+            bCount.setVisibility(View.GONE);
+            testCamped.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
     }
 
     private void initList() {
@@ -127,10 +138,15 @@ public class MainActivity extends Activity {
         unregisterBroadcast();
         // uncomment this if you want to
         // stop scanning when the app closes
-        /*
-        if (bstacInstance != null)
-            bstacInstance.stopRangingBeacons();
-        */
+        if (bstacInstance != null) {
+            try {
+                bstacInstance.stopRangingBeacons();
+            } catch (MSException e) {
+                // handle for older devices
+                e.printStackTrace();
+            }
+        }
+
     }
 
     // Callback intent results
