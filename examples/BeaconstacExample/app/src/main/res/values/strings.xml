@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Beaconstac Example</string>
     <string name="ble_not_supported">BLE not supported on this device.</string>
+
+    <string name="label_device_name">Device Name</string>
+    <string name="label_device_address">Device Address</string>
 </resources>
