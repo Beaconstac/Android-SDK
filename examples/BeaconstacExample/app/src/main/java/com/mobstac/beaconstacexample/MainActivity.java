@@ -88,6 +88,7 @@ public class MainActivity extends Activity {
         // start scanning
         try {
             bstacInstance.startRangingBeacons();
+
         } catch (MSException e) {
             // handle for older devices
             TextView rangedView = (TextView) findViewById(R.id.RangedView);
@@ -154,9 +155,14 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
             finish();
-            return;
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        if (bstacInstance != null) {
+            try {
+                bstacInstance.startRangingBeacons();
+            } catch (MSException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void registerBroadcast() {
