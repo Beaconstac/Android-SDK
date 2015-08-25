@@ -21,7 +21,7 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
     @Override
     public void exitedBeacon(Context context, MSBeacon beacon) {
         Log.v(BeaconstacExampleReceiver.class.getName(), "exited called " + beacon.getBeaconKey());
-        sendNotification(context, "Exited " + beacon.getBeaconKey());
+        sendNotification(context, "Exited " + beacon.getMajor() + " : " + beacon.getMinor());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
     @Override
     public void campedOnBeacon(Context context, MSBeacon beacon) {
         Log.v(BeaconstacExampleReceiver.class.getName(), "camped on called " + beacon.getBeaconKey());
-        sendNotification(context, "Camped " + beacon.getBeaconKey());
+        sendNotification(context, "Camped " + beacon.getMajor() + " : " + beacon.getMinor());
     }
 
     @Override
