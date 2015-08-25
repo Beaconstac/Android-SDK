@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterBroadcast();
-        
+
         // stop scanning when the app closes
         if (bstacInstance != null) {
             try {
