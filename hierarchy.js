@@ -26,7 +26,6 @@ var hierarchy =
     [ "com.mobstac.beaconstac.utils.MSLogger", "classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_logger.html", null ],
     [ "com.mobstac.beaconstac.utils.MSReachability", "classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_reachability.html", null ],
     [ "com.mobstac.beaconstac.core.MSRuleProcessor", "classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor.html", null ],
-    [ "com.mobstac.beaconstac.core.MSRuleProcessor.MSRuleProcessorCallback", "interfacecom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor_1_1_m_s_rule_processor_callback.html", null ],
     [ "com.mobstac.beaconstac.utils.MSScanResult", "classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_scan_result.html", null ],
     [ "com.mobstac.beaconstac.utils.MSSharedPreference", "classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_shared_preference.html", null ],
     [ "com.mobstac.beaconstac.utils.MSVolleySingleton", "classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_volley_singleton.html", null ],

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['setactivescanduration',['setActiveScanDuration',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#adf98b68f80ff151d1e475897744ee167',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['setbeaconaffinity',['setBeaconAffinity',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a5dfbf3b6673870cf39a4ee0e47c17f1e',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['setbias',['setBias',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a7148baeea0441118c03856cf60fec3ae',1,'com::mobstac::beaconstac::models::MSBeacon']]],
   ['setcreated',['setCreated',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a7020602eef817f73b5b73fc73b28c57f',1,'com::mobstac::beaconstac::models::MSAction']]],
@@ -12,6 +13,7 @@ var searchData=
   ['setmeta',['setMeta',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#ac947c092352123f4fb93bb8875ab8b16',1,'com::mobstac::beaconstac::models::MSAction']]],
   ['setname',['setName',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#aba3e1c3e04fc0dc5ed63fc4b77e585b3',1,'com::mobstac::beaconstac::models::MSBeacon']]],
   ['setorgid',['setOrgId',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a9f06ae831398ee5299f1f81b9a052dc6',1,'com::mobstac::beaconstac::core::Beaconstac']]],
+  ['setpassivescanduration',['setPassiveScanDuration',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a7c6b7ad0bf14de706b87f7059f4be81d',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['setregionparams',['setRegionParams',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#aa8b764c86ebcb4f4231175e004f342e6',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['setruleid',['setRuleID',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a03f643254f5bbb369edf080104398fdf',1,'com::mobstac::beaconstac::models::MSAction']]],
   ['setrulename',['setRuleName',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#af9f2f24117992296e002b28f1970b7ce',1,'com::mobstac::beaconstac::models::MSAction']]],

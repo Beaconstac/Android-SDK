@@ -23,7 +23,6 @@ var searchData=
   ['msrule',['MSRule',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_rule.html',1,'com::mobstac::beaconstac::models']]],
   ['msrulebeacon',['MSRuleBeacon',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_rule_beacon.html',1,'com::mobstac::beaconstac::models']]],
   ['msruleprocessor',['MSRuleProcessor',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor.html',1,'com::mobstac::beaconstac::core']]],
-  ['msruleprocessorcallback',['MSRuleProcessorCallback',['../interfacecom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor_1_1_m_s_rule_processor_callback.html',1,'com::mobstac::beaconstac::core::MSRuleProcessor']]],
   ['msscanresult',['MSScanResult',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_scan_result.html',1,'com::mobstac::beaconstac::utils']]],
   ['mssharedpreference',['MSSharedPreference',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_shared_preference.html',1,'com::mobstac::beaconstac::utils']]],
   ['msvolleysingleton',['MSVolleySingleton',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_volley_singleton.html',1,'com::mobstac::beaconstac::utils']]]

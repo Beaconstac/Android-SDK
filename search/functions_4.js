@@ -1,6 +1,7 @@
 var searchData=
 [
   ['getactionid',['getActionID',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#af273620bbe497ad1d4d6e3e8697a5c8a',1,'com::mobstac::beaconstac::models::MSAction']]],
+  ['getactivescanduration',['getActiveScanDuration',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a7830497a5ebab67b761f0abe8ef1ba81',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['getallkeys',['getAllKeys',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_shared_preference.html#acd700cc04c29fd2867fed7014960221c',1,'com::mobstac::beaconstac::utils::MSSharedPreference']]],
   ['getallplaces',['getAllPlaces',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_place.html#a94da19370b7c398cf2c2cc183c85479c',1,'com::mobstac::beaconstac::core::MSPlace']]],
   ['getbeaconkey',['getBeaconKey',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a5f3263261df466ef0bb94dcd69ba9e26',1,'com::mobstac::beaconstac::models::MSBeacon']]],
@@ -19,6 +20,7 @@ var searchData=
   ['gethandlerarray',['getHandlerArray',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_rule_processor.html#a716b554c618b2498fd173985aced36ab',1,'com::mobstac::beaconstac::core::MSRuleProcessor']]],
   ['getid',['getId',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a813780086fbbc9f528f051d5f37e7dd9',1,'com::mobstac::beaconstac::models::MSBeacon']]],
   ['getinstance',['getInstance',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#ad78662c8fe84f85eadbfb8aa18d10b8a',1,'com.mobstac.beaconstac.core.Beaconstac.getInstance()'],['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_b_l_e_service.html#abaeaa337c122d84f93be3f34149933ea',1,'com.mobstac.beaconstac.core.MSBLEService.getInstance()'],['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_reachability.html#a6a5e4192cf6982a5cad816555fcb2cc2',1,'com.mobstac.beaconstac.utils.MSReachability.getInstance()']]],
+  ['getint',['getInt',['../classcom_1_1mobstac_1_1beaconstac_1_1utils_1_1_m_s_shared_preference.html#a2a76c3f867ef1e92ba2654165cb03145',1,'com::mobstac::beaconstac::utils::MSSharedPreference']]],
   ['getiscampedon',['getIsCampedOn',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#ad1e2ac446396b2a75df268d415acbced',1,'com::mobstac::beaconstac::models::MSBeacon']]],
   ['getlatestrssi',['getLatestRSSI',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a7b1898c11bd1697e64743a18fa83f321',1,'com::mobstac::beaconstac::models::MSBeacon']]],
   ['getmajor',['getMajor',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#adf3371a6997b29d31be88f51abbd6951',1,'com::mobstac::beaconstac::models::MSBeacon']]],
@@ -33,6 +35,7 @@ var searchData=
   ['getname',['getName',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a72a6b448c2dce41765bc49356a8835a3',1,'com.mobstac.beaconstac.models.MSAction.getName()'],['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_beacon.html#a3b533b869b28993d6a9416a8fadebe92',1,'com.mobstac.beaconstac.models.MSBeacon.getName()'],['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_media.html#aac9c74d8cd302f9c7b598f8ef0ec9259',1,'com.mobstac.beaconstac.models.MSMedia.getName()']]],
   ['getorganizationid',['getOrganizationId',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_card.html#aa44711c43fd069c1774a4cbb6a5e377e',1,'com.mobstac.beaconstac.models.MSCard.getOrganizationId()'],['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_media.html#af7e6a0e831a82a7bc990d20ccb7538b8',1,'com.mobstac.beaconstac.models.MSMedia.getOrganizationId()']]],
   ['getorgid',['getOrgId',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#abec99d630137f096bf176fec7caf7e25',1,'com::mobstac::beaconstac::core::Beaconstac']]],
+  ['getpassivescanduration',['getPassiveScanDuration',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_beaconstac.html#a4dcd7da7163f122a45b00a6108e6b6b1',1,'com::mobstac::beaconstac::core::Beaconstac']]],
   ['getruleid',['getRuleID',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#a82d0bea0b0f0b78f53f24e4d87929b91',1,'com::mobstac::beaconstac::models::MSAction']]],
   ['getrulename',['getRuleName',['../classcom_1_1mobstac_1_1beaconstac_1_1models_1_1_m_s_action.html#ae2641594a4c25f9a4bcf414fe30a72f1',1,'com::mobstac::beaconstac::models::MSAction']]],
   ['getservice',['getService',['../classcom_1_1mobstac_1_1beaconstac_1_1core_1_1_m_s_b_l_e_service_1_1_m_s_b_l_e_service_binder.html#a30cfef78000be5d1503d7fce351a0725',1,'com::mobstac::beaconstac::core::MSBLEService::MSBLEServiceBinder']]],
