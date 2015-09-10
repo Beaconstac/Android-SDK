@@ -22,11 +22,13 @@ import com.mobstac.beaconstac.core.Beaconstac;
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
 import com.mobstac.beaconstac.core.MSConstants;
 import com.mobstac.beaconstac.core.MSPlace;
+import com.mobstac.beaconstac.core.PlaceSyncReceiver;
 import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
 import com.mobstac.beaconstac.models.MSCard;
 import com.mobstac.beaconstac.models.MSMedia;
 import com.mobstac.beaconstac.utils.MSException;
+import com.mobstac.beaconstac.utils.MSLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,6 +87,28 @@ public class MainActivity extends Activity {
         bstacInstance = Beaconstac.getInstance(this);
         bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
+
+        bstacInstance.syncPlaces();
+
+        new PlaceSyncReceiver() {
+
+            @Override
+            public void onSuccess(Context context) {
+                bstacInstance.enableGeofences(true);
+
+                try {
+                    bstacInstance.startRangingBeacons();
+                } catch (MSException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Context context) {
+                MSLogger.error("Error syncing geofence");
+            }
+        };
+
         // start scanning
         try {
             bstacInstance.startRangingBeacons();
@@ -251,11 +275,13 @@ public class MainActivity extends Activity {
                                         String src = m.getMediaUrl().toString();
 
                                         dialogBuilder = new AlertDialog.Builder(context);
-                                        dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        dialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
                                             @Override
-                                            public void onDismiss(DialogInterface dialog) {
+                                            public void onCancel(DialogInterface dialog) {
                                                 isPopupVisible = false;
                                             }
+
                                         });
 
                                         final WebView webView = new WebView(context);
@@ -274,11 +300,13 @@ public class MainActivity extends Activity {
                         case MSActionTypeWebpage:
                             if (!isPopupVisible) {
                                 dialogBuilder = new AlertDialog.Builder(context);
-                                dialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                dialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
                                     @Override
-                                    public void onDismiss(DialogInterface dialog) {
+                                    public void onCancel(DialogInterface dialog) {
                                         isPopupVisible = false;
                                     }
+
                                 });
 
                                 final WebView webView = new WebView(context);
@@ -315,13 +343,13 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public void enteredGeofence(Context context, ArrayList<MSPlace> arrayList) {
-            Toast.makeText(getApplicationContext(), "Entered geofence", Toast.LENGTH_SHORT).show();
+        public void enteredGeofence(Context context, ArrayList<MSPlace> places) {
+            Toast.makeText(getApplicationContext(), "Entered Geofence " + places.get(0).getName(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void exitedGeofence(Context context, ArrayList<MSPlace> arrayList) {
-            Toast.makeText(getApplicationContext(), "Exited geofence", Toast.LENGTH_SHORT).show();
+        public void exitedGeofence(Context context, ArrayList<MSPlace> places) {
+            Toast.makeText(getApplicationContext(), "Exited Geofence " + places.get(0).getName(), Toast.LENGTH_SHORT).show();
         }
     };
 }

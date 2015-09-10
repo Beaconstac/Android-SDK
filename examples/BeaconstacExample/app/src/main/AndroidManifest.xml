@@ -44,6 +44,7 @@
         </receiver>
 
         <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
+        <service android:name="com.mobstac.beaconstac.core.MSGeofenceTransitionIntentService" />
 
         <provider
             android:name=".MyContentProvider"
