@@ -76,7 +76,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 9. Add the Beaconstac BLEService to your app manifest:
 
-        <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
+        <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>        
 10. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon`, `exitedBeacon`, `triggeredRule`, `enteredRegion` and `exitedRegion` events. The `BeaconstacExample` app contains an example of each type - directly using `BeaconstacReceiver` in the activity (this will require registering and unregistering it to receive intents in the activity itself), and extending `BeaconstacReceiver` and registering it to receive `actions` declared in the app manifest.
 11. Add the Beaconstac-provided actions in the app manifest that you wish to listen for, in your BroadcastReceiver. From the `BeaconstacExample` app manifest:
 
@@ -117,5 +117,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         // stop scanning
         bstacInstance.stopRangingBeacons();
 16. You can also dynamically set `organization_id` and `api_key` using `setOrgId` and `setDevToken` methods on the `Beaconstac` instance.
+17. Add `MSGeofenceTransitionIntentService` to manifest if you want to use the SDK's Geofence APIs.
+
+		<service android:name="com.mobstac.beaconstac.core.MSGeofenceTransitionIntentService" />
+18. Implement the `PlaceSyncReceiver` before calling `enableGeofences` on the `Beaconstac` instance.
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
