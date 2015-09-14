@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,38 +89,50 @@ public class MainActivity extends Activity {
         bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
 
-        bstacInstance.syncPlaces();
+        // if location is enabled
+        LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            bstacInstance.syncPlaces();
 
-        new PlaceSyncReceiver() {
+            new PlaceSyncReceiver() {
 
-            @Override
-            public void onSuccess(Context context) {
-                bstacInstance.enableGeofences(true);
+                @Override
+                public void onSuccess(Context context) {
+                    bstacInstance.enableGeofences(true);
 
-                try {
-                    bstacInstance.startRangingBeacons();
-                } catch (MSException e) {
-                    e.printStackTrace();
+                    try {
+                        bstacInstance.startRangingBeacons();
+                    } catch (MSException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+                @Override
+                public void onFailure(Context context) {
+                    MSLogger.error("Error syncing geofence");
+                }
+            };
+
+            // start scanning
+            try {
+                bstacInstance.startRangingBeacons();
+
+            } catch (MSException e) {
+                // handle for older devices
+                TextView rangedView = (TextView) findViewById(R.id.RangedView);
+                rangedView.setText(R.string.ble_not_supported);
+                bCount.setVisibility(View.GONE);
+                testCamped.setVisibility(View.GONE);
+                e.printStackTrace();
             }
-
-            @Override
-            public void onFailure(Context context) {
-                MSLogger.error("Error syncing geofence");
+        } else {
+            // if location disabled, directly start ranging beacons
+            try {
+                bstacInstance.startRangingBeacons();
+            } catch (MSException e) {
+                e.printStackTrace();
             }
-        };
-
-        // start scanning
-        try {
-            bstacInstance.startRangingBeacons();
-
-        } catch (MSException e) {
-            // handle for older devices
-            TextView rangedView = (TextView) findViewById(R.id.RangedView);
-            rangedView.setText(R.string.ble_not_supported);
-            bCount.setVisibility(View.GONE);
-            testCamped.setVisibility(View.GONE);
-            e.printStackTrace();
         }
     }
 
