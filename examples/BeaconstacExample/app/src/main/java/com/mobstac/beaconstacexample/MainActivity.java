@@ -88,6 +88,7 @@ public class MainActivity extends Activity {
         bstacInstance = Beaconstac.getInstance(this);
         bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
                 "com.mobstac.beaconstacexample");
+        bstacInstance.syncRules();
 
         // if location is enabled
         LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -114,23 +115,16 @@ public class MainActivity extends Activity {
                 }
             };
 
-            // start scanning
+        } else {
+            // if location disabled, start ranging beacons
             try {
                 bstacInstance.startRangingBeacons();
-
             } catch (MSException e) {
                 // handle for older devices
                 TextView rangedView = (TextView) findViewById(R.id.RangedView);
                 rangedView.setText(R.string.ble_not_supported);
                 bCount.setVisibility(View.GONE);
                 testCamped.setVisibility(View.GONE);
-                e.printStackTrace();
-            }
-        } else {
-            // if location disabled, directly start ranging beacons
-            try {
-                bstacInstance.startRangingBeacons();
-            } catch (MSException e) {
                 e.printStackTrace();
             }
         }
@@ -204,6 +198,7 @@ public class MainActivity extends Activity {
 
     private void registerBroadcast() {
         if (!registered) {
+            // register beaconstac receiver
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_RANGED_BEACON);
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_CAMPED_BEACON);
@@ -213,19 +208,49 @@ public class MainActivity extends Activity {
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_REGION);
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_ENTERED_GEOFENCE);
             intentFilter.addAction(MSConstants.BEACONSTAC_INTENT_EXITED_GEOFENCE);
-            registerReceiver(myBroadcastReceiver, intentFilter);
+            registerReceiver(beaconstacReceiver, intentFilter);
+
+            //register place sync receiver
+            IntentFilter iFilter = new IntentFilter();
+            iFilter.addAction(MSConstants.BEACONSTAC_INTENT_PLACE_SYNC_SUCCESS);
+            iFilter.addAction(MSConstants.BEACONSTAC_INTENT_PLACE_SYNC_FAILURE);
+            registerReceiver(placeSyncReceiver, iFilter);
+
             registered = true;
         }
     }
 
     private void unregisterBroadcast() {
         if (registered) {
-            unregisterReceiver(myBroadcastReceiver);
+            // unregister beaconstac receiver
+            unregisterReceiver(beaconstacReceiver);
+            // unregister place sync receiver
+            unregisterReceiver(placeSyncReceiver);
             registered = false;
         }
     }
 
-    BeaconstacReceiver myBroadcastReceiver = new BeaconstacReceiver() {
+    PlaceSyncReceiver placeSyncReceiver = new PlaceSyncReceiver() {
+
+        @Override
+        public void onSuccess(Context context) {
+            bstacInstance.enableGeofences(true);
+
+            try {
+                bstacInstance.startRangingBeacons();
+            } catch (MSException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(Context context) {
+            MSLogger.error("Error syncing geofence");
+        }
+    };
+
+
+    BeaconstacReceiver beaconstacReceiver = new BeaconstacReceiver() {
         @Override
         public void exitedBeacon(Context context, MSBeacon beacon) {
             testCamped.setText("Exited: " + beacon.getMajor() + ":" + beacon.getMinor());
