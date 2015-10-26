@@ -22,7 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile(name: 'beaconstac-release', ext: 'aar')
-    compile 'com.mcxiaoke.volley:library:1.0.16'
+    compile 'com.mcxiaoke.volley:library:1.0.17'
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'com.crittercism:crittercism-android-agent:5.0.6'
 }
