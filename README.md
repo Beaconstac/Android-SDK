@@ -61,6 +61,10 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         </resources>
 
 
+	Please do ensure that the organization_id and the api_key have been filled into the beaconstac.xml.
+	This can be found under account details on the manage.beaconstac.com portal.
+	If this is not set, the rules will not get triggered.
+
 7. Add `uses-feature` tag to app manifest:
 
 		<uses-feature
