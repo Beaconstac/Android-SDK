@@ -60,9 +60,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 		    <string name="provider">com.mobstac.beaconstacexample.provider</string>
         </resources>
 
-7.    Please do ensure that the organization_id and the api_key have been filled into the beaconstac.xml.
-      This can be found under account details on the manage.beaconstac.com portal.
-      If this is not set, the rules will not get triggered.
+7.    `Please do ensure that the organization_id and the api_key have been filled into the beaconstac.xml.`
+      `This can be found under account details on the manage.beaconstac.com portal.`
+      `If this is not set, the rules will not get triggered.`
 
 8. Add `uses-feature` tag to app manifest:
 
