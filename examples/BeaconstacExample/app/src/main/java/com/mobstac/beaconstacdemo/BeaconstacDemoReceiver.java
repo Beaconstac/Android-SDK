@@ -1,49 +1,50 @@
-package com.mobstac.beaconstacexample;
+package com.mobstac.beaconstacdemo;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.mobstac.beaconstac.core.BeaconstacReceiver;
-import com.mobstac.beaconstac.core.MSPlace;
 import com.mobstac.beaconstac.models.MSAction;
 import com.mobstac.beaconstac.models.MSBeacon;
+import com.mobstac.beaconstac.core.MSPlace;
 
 import java.util.ArrayList;
 
 
-public class BeaconstacExampleReceiver extends BeaconstacReceiver {
-    private NotificationManager notificationManager;
+public class BeaconstacDemoReceiver extends BeaconstacReceiver {
+
+    NotificationManager notificationManager;
 
     @Override
     public void exitedBeacon(Context context, MSBeacon beacon) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "exited called " + beacon.getBeaconKey());
+        Log.v(BeaconstacDemoReceiver.class.getName(), "exited called " + beacon.getBeaconKey());
         sendNotification(context, "Exited " + beacon.getMajor() + " : " + beacon.getMinor());
     }
 
     @Override
     public void rangedBeacons(Context context, ArrayList<MSBeacon> beacons) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "Ranged called " + beacons.size());
+        Log.v(BeaconstacDemoReceiver.class.getName(), "Ranged called " + beacons.size());
         sendNotification(context, "Ranged " + beacons.size() + " beacons");
     }
 
     @Override
     public void campedOnBeacon(Context context, MSBeacon beacon) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "camped on called " + beacon.getBeaconKey());
+        Log.v(BeaconstacDemoReceiver.class.getName(), "camped on called " + beacon.getBeaconKey());
         sendNotification(context, "Camped " + beacon.getMajor() + " : " + beacon.getMinor());
     }
 
     @Override
     public void triggeredRule(Context context, String ruleName, ArrayList<MSAction> actions) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "triggered rule called " + ruleName);
+        Log.v(BeaconstacDemoReceiver.class.getName(), "triggered rule called " + ruleName + " with " + actions.size() + " actions");
     }
 
     @Override
     public void enteredRegion(Context context, String region) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "Entered region " + region);
+        Log.v(BeaconstacDemoReceiver.class.getName(), "Entered region " + region);
     }
 
     @Override
@@ -51,17 +52,24 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
         notificationManager = (NotificationManager)
                 context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
-        Log.v(BeaconstacExampleReceiver.class.getName(), "Exited region " + region);
+        Log.v(BeaconstacDemoReceiver.class.getName(), "Exited region " + region);
     }
 
     @Override
-    public void enteredGeofence(Context context, ArrayList<MSPlace> arrayList) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "Entered geofence");
+    public void enteredGeofence(Context context, ArrayList<MSPlace> places) {
+        notificationManager = (NotificationManager)
+                context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+        Log.v(BeaconstacDemoReceiver.class.getName(), "Entered geofence " + places.get(0).getName() + "");
     }
 
     @Override
-    public void exitedGeofence(Context context, ArrayList<MSPlace> arrayList) {
-        Log.v(BeaconstacExampleReceiver.class.getName(), "Exited geofence");
+    public void exitedGeofence(Context context, ArrayList<MSPlace> places) {
+        notificationManager = (NotificationManager)
+                context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+        Log.v(BeaconstacDemoReceiver.class.getName(), "Exited geofence " + places.get(0).getName() + "");
+
     }
 
     @Override
@@ -78,14 +86,15 @@ public class BeaconstacExampleReceiver extends BeaconstacReceiver {
                     activityIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
-            Notification mBuilder = new Notification.Builder(context.getApplicationContext())
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext())
                     .setContentText(text)
-                    .setContentTitle("BeaconstacExample")
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentIntent(pendingIntent).build();
+                    .setContentTitle("BeaconstacDemo")
+                    .setSmallIcon(R.drawable.icon)
+                    .setContentIntent(pendingIntent);
             notificationManager = (NotificationManager)
                     context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(1, mBuilder);
+            notificationManager.notify(1, mBuilder.build());
         }
     }
 }

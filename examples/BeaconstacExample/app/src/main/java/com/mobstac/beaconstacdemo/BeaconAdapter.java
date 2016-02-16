@@ -1,4 +1,4 @@
-package com.mobstac.beaconstacexample;
+package com.mobstac.beaconstacdemo;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import java.util.Comparator;
 
 
 public class BeaconAdapter extends BaseAdapter {
-
     private ArrayList<MSBeacon> beacons;
     private Context ctx;
     private LayoutInflater myInflator;
@@ -24,7 +23,7 @@ public class BeaconAdapter extends BaseAdapter {
         super();
         beacons = arr;
         ctx = c;
-        myInflator = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        myInflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public void addBeacon(MSBeacon beacon) {
@@ -63,9 +62,9 @@ public class BeaconAdapter extends BaseAdapter {
         Collections.sort(beacons, new Comparator<MSBeacon>() {
             @Override
             public int compare(MSBeacon lhs, MSBeacon rhs) {
-                if (lhs.getIsCampedOn())
+                if (lhs.getLatestRSSI() > rhs.getLatestRSSI())
                     return -1;
-                else if (rhs.getIsCampedOn())
+                else if (lhs.getLatestRSSI() < rhs.getLatestRSSI())
                     return 1;
                 else
                     return 0;
@@ -88,7 +87,7 @@ public class BeaconAdapter extends BaseAdapter {
 
         TextView key = (TextView) view.findViewById(R.id.device_address);
         key.setText("Major: " + beacon.getMajor() + "\t\t\t Minor: " + beacon.getMinor() +
-                " \t\t\t  Mean RSSI: " + beacon.getMeanRSSI());
+            " \t\t\t  Mean RSSI: " + beacon.getMeanRSSI());
 
         if (beacon.getIsCampedOn()) {
             view.setBackgroundResource(android.R.color.holo_green_light);

@@ -1,4 +1,4 @@
-package com.mobstac.beaconstacexample;
+package com.mobstac.beaconstacdemo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

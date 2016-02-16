@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mobstac.beaconstacexample" >
+    package="com.mobstac.beaconstacdemo">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
 
     <application
+        android:name=".BeaconstacDemo"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".BeaconstacExampleReceiver" android:exported="false">
+        <receiver
+            android:name=".BeaconstacDemoReceiver"
+            android:exported="false">
+
             <intent-filter>
                 <action android:name="com.mobstac.beaconstac.intent.action.RANGED_BEACON" />
                 <action android:name="com.mobstac.beaconstac.intent.action.CAMPED_BEACON" />
@@ -43,7 +47,16 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>
+
+        <receiver android:name="com.mobstac.beaconstac.core.DismissNotification">
+            <intent-filter>
+                <action android:name="com.mobstac.beaconstac.core.DismissNotification" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.mobstac.beaconstac.core.MSBLEService" />
+        <service android:name="com.mobstac.beaconstac.core.BTToggleService" />
+
         <service android:name="com.mobstac.beaconstac.core.MSGeofenceTransitionIntentService" />
 
         <provider
@@ -51,10 +64,7 @@
             android:authorities="@string/provider"
             android:enabled="true"
             android:exported="false"
-            android:multiprocess="true"
-            android:grantUriPermissions="true"
-            android:syncable="true" >
-        </provider>
+            android:grantUriPermissions="true"></provider>
 
     </application>
 
