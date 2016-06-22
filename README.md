@@ -129,5 +129,5 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
 
-20. You can also obtain the SDK from Gradle using -
+You can also obtain the SDK from Gradle using -
 `compile 'com.mobstac.beaconstac:beaconstac_sdk:1.4.2'`
