@@ -130,4 +130,9 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
 
 You can also obtain the SDK from Gradle using -
-`compile 'com.mobstac.beaconstac:beaconstac_sdk:1.4.2'`
+```groovy
+compile 'com.mobstac.beaconstac:beaconstac:1.5'
+```
+
+Latest version<br>
+ [ ![Download](https://api.bintray.com/packages/mobstac/maven/beaconstac_sdk/images/download.svg?version=1.5) ](https://bintray.com/mobstac/maven/beaconstac_sdk/1.5/link)
