@@ -22,10 +22,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.0.1'
-    compile (name: 'beaconstac-release', ext: 'aar')
-    compile 'com.mcxiaoke.volley:library:1.0.17'
-    compile 'com.google.android.gms:play-services-location:10.0.0'
-    compile 'com.google.android.gms:play-services-places:10.0.0'
-    compile 'com.google.android.gms:play-services-maps:10.0.0'
-    compile 'com.crittercism:crittercism-android-agent:5.0.6'
+    compile 'com.mobstac.beaconstac:beaconstac_sdk:+'
 }
