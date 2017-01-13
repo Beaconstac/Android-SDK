@@ -131,7 +131,7 @@ You can find more information and example usage in the `BeaconstacExample` app c
 
 You can also obtain the SDK from Gradle using -
 ```groovy
-compile 'com.mobstac.beaconstac:beaconstac_sdk:1.53'
+compile 'com.mobstac.beaconstac:beaconstac_sdk:1.54'
 ```
 
 Latest version<br>
