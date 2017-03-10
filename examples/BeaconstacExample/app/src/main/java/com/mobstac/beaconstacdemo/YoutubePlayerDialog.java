@@ -16,12 +16,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
+import com.mobstac.beaconstac.utils.MSLogger;
 
 /**
  * Created by kislaykishore on 19/08/15.
@@ -94,10 +92,14 @@ public class YoutubePlayerDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     dismiss();
-                    Uri uri = Uri.parse(ok_action); // missing 'http://' will cause crashed
-                    Intent openUrl = new Intent(Intent.ACTION_VIEW, uri);
-                    openUrl.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getActivity().getApplicationContext().startActivity(openUrl);
+                    try {
+                        Uri uri = Uri.parse(ok_action); // missing 'http://' will cause crashed
+                        Intent openUrl = new Intent(Intent.ACTION_VIEW, uri);
+                        openUrl.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getActivity().getApplicationContext().startActivity(openUrl);
+                    } catch (Exception e) {
+                        MSLogger.error("Cannot open this url");
+                    }
                 }
             });
         }

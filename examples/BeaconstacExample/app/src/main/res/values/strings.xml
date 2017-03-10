@@ -10,5 +10,6 @@
     <string name="dialog_message">Please enable Bluetooth and launch the app again.</string>
     <string name="dialog_title">Bluetooth Disabled</string>
     <string name="button_close">Dismiss</string>
+    <string name="provider">com.mobstac.beaconstacdemo.provider</string>
 
 </resources>

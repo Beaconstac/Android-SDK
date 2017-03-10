@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.mobstac.beaconstac.utils.MSLogger;
+
 import java.util.ArrayList;
 
 /**
@@ -117,11 +119,17 @@ public class ImageCarouselDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     dismiss();
-                    Uri uri = Uri.parse(ok_action); // missing 'http://' will cause crashed
-                    Intent openUrl = new Intent(Intent.ACTION_VIEW, uri);
-                    openUrl.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getActivity().getApplicationContext().startActivity(openUrl);
+                    try {
+                        Uri uri = Uri.parse(ok_action); // missing 'http://' will cause crashed
+                        Intent openUrl = new Intent(Intent.ACTION_VIEW, uri);
+                        openUrl.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getActivity().getApplicationContext().startActivity(openUrl);
+                    } catch (Exception e) {
+                        MSLogger.error("Cannot open this url");
+                    }
                 }
+
+
             });
         }
         return rootView;
