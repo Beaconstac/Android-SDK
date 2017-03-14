@@ -10,68 +10,20 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 
 ## Integration with your existing project in Android Studio
 
-1. Download or clone this repo on your system.
-2. Copy the [beaconstac-release.aar](https://github.com/Beaconstac/Android-SDK/blob/master/BeaconstacSDK/beaconstac-release.aar) file into the `libs` directory of your app. Refer the included sample app for example.
-3. In the `build.gradle` file of your project, add the following in the repositories section
+1. You can obtain the SDK from Gradle using -
+```groovy
+compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0'
+```
 
-        flatDir {
-            dirs 'libs'
-        }
-![](images/repositories.png "Repositories")
-4. In the `build.gradle` file of the app, add the following in the dependencies section:
+2. Refresh all Gradle projects. 
 
-        compile (name: 'beaconstac-release', ext: 'aar')
-        compile 'com.mcxiaoke.volley:library:1.0.17'
-	    compile 'com.google.android.gms:play-services:8.1.0'
-	    compile 'com.crittercism:crittercism-android-agent:5.0.6'
-5. Refresh all Gradle projects.
-6. Create a file `beaconstac.xml` in the `values` folder containing configurations for Beaconstac SDK. 
+3. Add `uses-feature` tag to app manifest:
 
-		<?xml version="1.0" encoding="utf-8"?>
-        <resources>
-            <!-- whether rule processing is enabled -->
-            <bool name="ruleProcessingEnabled">true</bool>
-            
-            <!-- time interval in seconds between rule syncs -->
-            <integer name="ruleSyncInterval">86400</integer>
-            
-            <!-- events for which rules would be processed -->
-            <string-array name="ruleEvents">
-                <item>CAMPED</item>
-                <item>EXITED</item>
-            </string-array>
-
-            <!-- whether analytics is enabled -->
-            <bool name="analyticsEnabled">true</bool>
-            
-            <!-- time interval in seconds between analytics posting -->
-            <integer name="analyticsPostInterval">900</integer>
-            
-            <!-- Whether bug tracking is enabled -->
-		    <bool name="bugTrackingEnabled">true</bool>
-
-            <!-- Beaconstac API token -->
-            <string name="api_key"></string>
-            
-            <!-- Organization id -->
-            <integer name="organization_id">0</integer>
-            
-            <!-- Provider authority -->
-		    <string name="provider">com.mobstac.beaconstacexample.provider</string>
-        </resources>
-
-7. Note :
-
-		Please do ensure that the organization_id and the api_key have been filled into the beaconstac.xml.
-        This can be found under account details on the manage.beaconstac.com portal.
-       	If this is not set, the rules will not get triggered.
-
-8. Add `uses-feature` tag to app manifest:
-
-		<uses-feature
+       <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
-9. Add the following permissions to app manifest:
+        
+4. Add the following permissions to app manifest:
 
         <uses-permission android:name="android.permission.BLUETOOTH" />
         <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -79,59 +31,157 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-10. Add the Beaconstac BLEService to your app manifest:
+        
+5. Add the Beaconstac BLEService to your app manifest:
 
-        <service android:name="com.mobstac.beaconstac.core.MSBLEService" android:enabled="true"/>        
-11. Should you choose to implement your own BroadcastReceiver (required if beacon detection has to work when the app is not running), extend `com.mobstac.beaconstac.core.BeaconstacReceiver` class and implement methods to handle the `rangedBeacons`, `campedOnBeacon`, `exitedBeacon`, `triggeredRule`, `enteredRegion` and `exitedRegion` events. The `BeaconstacExample` app contains an example of each type - directly using `BeaconstacReceiver` in the activity (this will require registering and unregistering it to receive intents in the activity itself), and extending `BeaconstacReceiver` and registering it to receive `actions` declared in the app manifest.
-12. Add the Beaconstac-provided actions in the app manifest that you wish to listen for, in your BroadcastReceiver. From the `BeaconstacExample` app manifest:
+        <service android:name="com.mobstac.beaconstac.MSBLEService" android:enabled="true"/>        
 
-        <receiver android:name=".BeaconstacExampleReceiver" android:exported="false">
-            <intent-filter>
-                <action android:name="com.mobstac.beaconstac.intent.action.RANGED_BEACON" />
-                <action android:name="com.mobstac.beaconstac.intent.action.CAMPED_BEACON" />
-                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_BEACON" />
-                <action android:name="com.mobstac.beaconstac.intent.action.TRIGGERED_RULE" />
-                <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_REGION" />
-                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_REGION" />
-                <action android:name="com.mobstac.beaconstac.intent.action.ENTERED_GEOFENCE" />
-                <action android:name="com.mobstac.beaconstac.intent.action.EXITED_GEOFENCE" />
-            </intent-filter>
-        </receiver>
-13. Add `provider` to the manifest. Please implement your own ContentProvider that extends `com.mobstac.beaconstac.provider.MSContentProvider`. From the `BeaconstacExample` app:
+6. To get the Beaconstac instance, insert the `developer token` and `organisation id` and add a MSSyncListener:
 
-		<provider
-            android:name=".MyContentProvider"
-            android:authorities="@string/provider"
-            android:enabled="true"
-            android:exported="false"
-            android:multiprocess="true"
-            android:grantUriPermissions="true"
-            android:syncable="true" >
-14. To monitor beacon regions, configure the `UUID` and `region_identifier`.
+       // Note that this will sync Beacons, Rules and Notifications implicitly but Tags and Places will not be synced.   
+       Beaconstac bstacInstance = Beaconstac.getInstance(this, "Developer_token", organisation id , new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+                //Initialization successful.
+            }
+
+            @Override
+            public void onFailure(MSException msException) {
+               //Initialization failed.
+            }
+        });    
+        
+7. You can also sync them individually if required:
+
+       // To sync Beacons
+       bstacInstance.syncBeacons(new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+               //Beacons Synced
+            }
+
+            @Override
+            public void onFailure(MSException e) {
+               //Failed to sync Beacons
+            }
+        });
+        
+        // To sync Rules
+        bstacInstance.syncRules(new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+               //Rules synced
+            }
+
+            @Override
+            public void onFailure(MSException e) {
+               //Failed to sync Rules
+            }
+        });
+        
+        // To sync Notifications
+        bstacInstance.syncNotifications(new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+               //Notifications Synced
+            }
+
+            @Override
+            public void onFailure(MSException e) {
+               //Failed to sync Notifications
+            }
+        });
+        
+        // To sync Tags
+        bstacInstance.syncTags(new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+               //Tags synced
+            }
+
+            @Override
+            public void onFailure(MSException e) {
+               //Failed to sync tags
+            }
+        });
+        
+        // To sync Places
+        bstacInstance.syncPlaces(new MSSyncListener() {
+            @Override
+            public void onSuccess() {
+               //Places synced
+            }
+
+            @Override
+            public void onFailure(MSException e) {
+               //Failed to sync places
+            }
+        });
+   
+        
+8. To monitor beacon regions, configure the `UUID` and `region_identifier`.
 
         // set region parameters (UUID and unique region identifier)
-        Beaconstac bstacInstance = Beaconstac.getInstance(this);
-        bstacInstance.setRegionParams("F94DBB23-2266-7822-3782-57BEAC0952AC",
+        bstacInstance.setRegionParams("Enter your UUID here",
                 "com.mobstac.beaconstacexample");
-15. Call `startRangingBeacons` on the `Beaconstac` instance after configuring the params as mentioned in the previous step. The method will throw `MSException` on devices running Androi 17 or below.
+                
+9. Call `startRangingBeacons` on the `Beaconstac` instance after configuring the params as mentioned in the previous step. The method will need a `MSErrorListener` to handle error in ranging beacons.
 
-        // start scanning
-        bstacInstance.startRangingBeacons();
-16. If you want to stop scanning for beacons, call `stopRangingBeacons` on the `Beaconstac` instance. The method will throw `MSException` on devices running Androi 17 or below.
+        // start scanning beacons
+        bstacInstance.startRangingBeacons(new MSErrorListener() {
+            @Override
+            public void onError(MSException e) {
+                //BLE not supoorted
+            }
+        });
+        
+10. If you want to stop scanning for the beacons, call `stopRangingBeacons` on the `Beaconstac` instance. The method will need a `MSErrorListener` to handle error in stop ranging beacons.
 
         // stop scanning
-        bstacInstance.stopRangingBeacons();
-17. You can also dynamically set `organization_id` and `api_key` using `setOrgId` and `setDevToken` methods on the `Beaconstac` instance.
-18. Add `MSGeofenceTransitionIntentService` to manifest if you want to use the SDK's Geofence APIs.
+        bstacInstance..stopRangingBeacons(new MSErrorListener() {
+                @Override
+                public void onError(MSException e) {
+                    //BLE not supported
+                }
+            });
+            
+11. You need to add a `BeaconScannerCallbacks` to get the events that are being triggered.
 
-		<service android:name="com.mobstac.beaconstac.core.MSGeofenceTransitionIntentService" />
-19. Implement the `PlaceSyncReceiver` before calling `enableGeofences` on the `Beaconstac` instance.
+       // This is a listener to listen to events being triggered
+       bstacInstance.setBeaconScannerCallbacks(new BeaconScannerCallbacks() {
+            @Override
+            public void onRangedBeacons(ArrayList<MSBeacon> arrayList) {
+               
+            }
 
+            @Override
+            public void onCampedBeacon(MSBeacon msBeacon) {
+                
+            }
+
+            @Override
+            public void onExitedBeacon(MSBeacon msBeacon) {
+                
+            }
+
+            @Override
+            public void onEnteredRegion(String s) {
+                
+            }
+
+            @Override
+            public void onExitedRegion(String s) {
+                
+            }
+
+            @Override
+            public void onRuleTriggered(String s, ArrayList<MSAction> arrayList) {
+                
+
+            }
+        }); 
+            
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
-
-You can also obtain the SDK from Gradle using -
-```groovy
-compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0'
 ```
 
 Latest version<br>
