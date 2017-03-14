@@ -14,6 +14,8 @@ Please refer to the API documentation on the [Beaconstac developer hub](https://
 ```groovy
 compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0'
 ```
+Latest version<br>
+ [ ![Download](https://api.bintray.com/packages/mobstac/maven/beaconstac_sdk/images/download.svg) ](https://bintray.com/mobstac/maven/beaconstac_sdk/_latestVersion)
 
 2. Refresh all Gradle projects. 
 
@@ -182,7 +184,3 @@ compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0'
         }); 
             
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
-```
-
-Latest version<br>
-[ ![Download](https://api.bintray.com/packages/mobstac/maven/beaconstac_sdk/images/download.svg) ](https://bintray.com/mobstac/maven/beaconstac_sdk/_latestVersion)
