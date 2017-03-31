@@ -6,7 +6,7 @@ Beaconstac SDK is an easy way to enable proximity marketing and location analyti
 
 ## Documentation
 
-Please refer to the API documentation on the [Beaconstac developer hub](https://beaconstac.github.io/Android-SDK/).
+Please refer to the API documentation on the [Beaconstac developer hub](http://docs.beaconstac.com/docs/references/android/).
 
 ## Integration with your existing project in Android Studio
 
@@ -140,7 +140,7 @@ Latest version<br>
 10. If you want to stop scanning for the beacons, call `stopRangingBeacons` on the `Beaconstac` instance. The method will need a `MSErrorListener` to handle error in stop ranging beacons.
 
         // stop scanning
-        bstacInstance..stopRangingBeacons(new MSErrorListener() {
+        bstacInstance.stopRangingBeacons(new MSErrorListener() {
                 @Override
                 public void onError(MSException e) {
                     //BLE not supported
