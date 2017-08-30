@@ -12,7 +12,7 @@ Please refer to the API documentation on the [Beaconstac developer hub](http://d
 
 1. You can obtain the SDK from Gradle using -
 ```groovy
-compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0.1'
+compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0.2'
 ```
 Latest version<br>
  [ ![Download](https://api.bintray.com/packages/mobstac/maven/beaconstac_sdk/images/download.svg) ](https://bintray.com/mobstac/maven/beaconstac_sdk/_latestVersion)
