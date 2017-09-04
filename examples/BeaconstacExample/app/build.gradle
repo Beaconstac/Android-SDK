@@ -8,8 +8,8 @@ android {
         applicationId "com.mobstac.beaconstacdemo"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 2
-        versionName "2.0"
+        versionCode 3
+        versionName "2.3"
     }
     buildTypes {
         release {
@@ -23,6 +23,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
-    compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0'
+    compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0.3'
 
 }
