@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.mobstac.beaconstac.models.MBeacon;
+import com.mobstac.beaconstac.models.MSBeacon;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,30 +15,30 @@ import java.util.Comparator;
 
 
 public class BeaconAdapter extends BaseAdapter {
-    private ArrayList<MBeacon> beacons;
+    private ArrayList<MSBeacon> beacons;
     private Context ctx;
     private LayoutInflater myInflator;
 
-    BeaconAdapter(ArrayList<MBeacon> arr, Context c) {
+    public BeaconAdapter(ArrayList<MSBeacon> arr, Context c) {
         super();
         beacons = arr;
         ctx = c;
         myInflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    void addBeacon(MBeacon beacon) {
+    public void addBeacon(MSBeacon beacon) {
         if(!beacons.contains(beacon)) {
             beacons.add(beacon);
         }
     }
 
-    void removeBeacon(MBeacon beacon) {
+    public void removeBeacon(MSBeacon beacon) {
         if(beacons.contains(beacon)) {
             beacons.remove(beacon);
         }
     }
 
-    void clear() {
+    public void clear() {
         beacons.clear();
     }
 
@@ -48,7 +48,7 @@ public class BeaconAdapter extends BaseAdapter {
     }
 
     @Override
-    public MBeacon getItem(int position) {
+    public MSBeacon getItem(int position) {
         return beacons.get(position);
     }
 
@@ -59,12 +59,12 @@ public class BeaconAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        Collections.sort(beacons, new Comparator<MBeacon>() {
+        Collections.sort(beacons, new Comparator<MSBeacon>() {
             @Override
-            public int compare(MBeacon lhs, MBeacon rhs) {
-                if (lhs.getFilteredRssi() > rhs.getFilteredRssi())
+            public int compare(MSBeacon lhs, MSBeacon rhs) {
+                if (lhs.getLatestRSSI() > rhs.getLatestRSSI())
                     return -1;
-                else if (lhs.getFilteredRssi() < rhs.getFilteredRssi())
+                else if (lhs.getLatestRSSI() < rhs.getLatestRSSI())
                     return 1;
                 else
                     return 0;
@@ -80,14 +80,14 @@ public class BeaconAdapter extends BaseAdapter {
         if (view == null) {
             view = myInflator.inflate(R.layout.beacon_view, parent, false);
         }
-        MBeacon beacon = beacons.get(position);
+        MSBeacon beacon = beacons.get(position);
 
         TextView name = (TextView) view.findViewById(R.id.device_name);
-        name.setText(beacon.getName().toString());
+        name.setText(beacon.getBeaconUUID().toString());
 
         TextView key = (TextView) view.findViewById(R.id.device_address);
         key.setText("Major: " + beacon.getMajor() + "\t\t\t Minor: " + beacon.getMinor() +
-            " \t\t\t  Filtered RSSI: " + beacon.getFilteredRssi());
+            " \t\t\t  Mean RSSI: " + beacon.getMeanRSSI());
 
         if (beacon.getIsCampedOn()) {
             view.setBackgroundResource(android.R.color.holo_green_light);

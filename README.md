@@ -1,186 +1,167 @@
-# Android-SDK
+# Beaconstac Android-SDK
 
 ## Introduction
 
 Beaconstac SDK is an easy way to enable proximity marketing and location analytics through an iBeacon-compliant BLE network.
 
-## Documentation
+## Integrate with your existing project in Android Studio
 
-Please refer to the API documentation on the [Beaconstac developer hub](http://docs.beaconstac.com/docs/references/android/).
-
-## Integration with your existing project in Android Studio
-
-1. You can obtain the SDK from Gradle using -
+### In the `build.gradle` file of the app, add the following in the dependencies section:
 ```groovy
-compile 'com.mobstac.beaconstac:beaconstac_sdk:2.0.4'
+compile 'com.mobstac.beaconstac:proximity:3.0.1'
 ```
 Latest version<br>
- [ ![Download](https://api.bintray.com/packages/mobstac/maven/beaconstac_sdk/images/download.svg) ](https://bintray.com/mobstac/maven/beaconstac_sdk/_latestVersion)
+ [ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
 
-2. Refresh all Gradle projects. 
+## Permissions
 
-3. Add `uses-feature` tag to app manifest:
+__Beaconstac requires the following permissions__
+```xml
 
-       <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="false" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+```
         
-4. Add the following permissions to app manifest:
+It is not necessary to explicitly add these permissions to your app. They will be added automatically when you include the SDK.
+      
+### Runtime permissions
 
-        <uses-permission android:name="android.permission.BLUETOOTH" />
-        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-        
-5. Add the Beaconstac BLEService to your app manifest:
+Since Android 6.0, Android has introduced the concept of runtime permissions. Beaconstac SDK requires one runtime permission:
 
-        <service android:name="com.mobstac.beaconstac.MSBLEService" android:enabled="true"/>        
+__Location__
 
-6. To get the Beaconstac instance, insert the `developer token` and `organisation id` and add a MSSyncListener:
+Beaconstac requires the location permission to scan for nearby beacons. Beaconstac SDK's initialize() will fail if location permission is denied.
 
-       // Note that this will sync Beacons, Rules and Notifications implicitly but Tags and Places will not be synced.   
-       Beaconstac bstacInstance = Beaconstac.getInstance(this, "Developer_token", organisation id , new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-                //Initialization successful.
-            }
+### Prerequisites
 
-            @Override
-            public void onFailure(MSException msException) {
-               //Initialization failed.
-            }
-        });    
-        
-7. You can also sync them individually if required:
+1. Please extract your developer token from the Beaconstac dashboard under "My Account".
 
-       // To sync Beacons
-       bstacInstance.syncBeacons(new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-               //Beacons Synced
-            }
+2. Internet access is required to initialize the SDK.
 
-            @Override
-            public void onFailure(MSException e) {
-               //Failed to sync Beacons
-            }
-        });
-        
-        // To sync Rules
-        bstacInstance.syncRules(new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-               //Rules synced
-            }
+3. Bluetooth enabled for scanning beacons.
+      
+## Usage
 
-            @Override
-            public void onFailure(MSException e) {
-               //Failed to sync Rules
-            }
-        });
-        
-        // To sync Notifications
-        bstacInstance.syncNotifications(new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-               //Notifications Synced
-            }
+### Use our one line integration
 
-            @Override
-            public void onFailure(MSException e) {
-               //Failed to sync Notifications
-            }
-        });
-        
-        // To sync Tags
-        bstacInstance.syncTags(new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-               //Tags synced
-            }
+__Note:__ If this is used, the Beaconstac SDK will automatically start scanning for beacons and trigger notifications based on rules defined on Beaconstac dashboard. You can also explicitly start or stop beacon scanning by calling `Beaconstac.getInstance().startScanningBeacons()` and `Beaconstac.getInstance().stopScanningBeacons()` respectively. Please refer [advanced](#3-start-scan) for more info.
 
-            @Override
-            public void onFailure(MSException e) {
-               //Failed to sync tags
-            }
-        });
-        
-        // To sync Places
-        bstacInstance.syncPlaces(new MSSyncListener() {
-            @Override
-            public void onSuccess() {
-               //Places synced
-            }
 
-            @Override
-            public void onFailure(MSException e) {
-               //Failed to sync places
-            }
-        });
-   
-        
-8. To monitor beacon regions, configure the `UUID` and `region_identifier`.
+```java
+Beaconstac.initialize(getApplicationContext(), MY_DEVELOPER_TOKEN, new MSErrorListener() {
+    @Override
+    public void onError(MSException msException) {
+        Log.d("Beaconstac", msException.getErrorMessage());
+    }
+});
+```
 
-        // set region parameters (UUID and unique region identifier)
-        bstacInstance.setRegionParams("Enter your UUID here",
-                "com.mobstac.beaconstacexample");
+### OR
+
+### Use our advanced integration
+
+__1. Initialise the SDK with your developer token (preferably in the Application class)__
+ 
+```java
+
+Beaconstac.initialize(getApplicationContext(), MY_DEVELOPER_TOKEN, new MSSyncListener() {
+    @Override
+    public void onSuccess() {
+        Log.d("Beaconstac", "Initialization successful");
+        Beaconstac.getInstance().startScan(new MSErrorListener() {
+            @Override
+            public void onError(MSException msException) {
                 
-9. Call `startRangingBeacons` on the `Beaconstac` instance after configuring the params as mentioned in the previous step. The method will need a `MSErrorListener` to handle error in ranging beacons.
-
-        // start scanning beacons
-        bstacInstance.startRangingBeacons(new MSErrorListener() {
-            @Override
-            public void onError(MSException e) {
-                //BLE not supoorted
             }
         });
-        
-10. If you want to stop scanning for the beacons, call `stopRangingBeacons` on the `Beaconstac` instance. The method will need a `MSErrorListener` to handle error in stop ranging beacons.
+    }
 
-        // stop scanning
-        bstacInstance.stopRangingBeacons(new MSErrorListener() {
-                @Override
-                public void onError(MSException e) {
-                    //BLE not supported
-                }
-            });
-            
-11. You need to add a `BeaconScannerCallbacks` to get the events that are being triggered.
+    @Override
+    public void onFailure(MSException e) {
+        Log.d("Beaconstac", "Initialization failed");
+    }
 
-       // This is a listener to listen to events being triggered
-       bstacInstance.setBeaconScannerCallbacks(new BeaconScannerCallbacks() {
-            @Override
-            public void onRangedBeacons(ArrayList<MSBeacon> arrayList) {
+});
+```
                
-            }
+__2. Get Beaconstac instance__
+```java
+Beaconstac beaconstac = Beaconstac.getInstance();
+```    
+#### 3. Start scan
 
-            @Override
-            public void onCampedBeacon(MSBeacon msBeacon) {
-                
-            }
+```java
+Beaconstac.getInstance().startScanningBeacons(new MSErrorListener() {
+    @Override
+    public void onError(MSException msException) {
+        
+    }
+});
+```
+__4. Stop scan__
+```java
+Beaconstac.getInstance().stopScanningBeacons(new MSErrorListener() {
+    @Override
+    public void onError(MSException msException) {
 
-            @Override
-            public void onExitedBeacon(MSBeacon msBeacon) {
-                
-            }
+    }
+}); 
+```        
+      
+__5. Get beacon event callbacks__
 
-            @Override
-            public void onEnteredRegion(String s) {
-                
-            }
+__Note: You only need to implement this if you want to get callbacks for beacon events.__
 
-            @Override
-            public void onExitedRegion(String s) {
-                
-            }
+```java
+Beaconstac.getInstance().setBeaconScannerCallbacks(new BeaconScannerCallbacks() {
+    @Override
+    public void onScannedBeacons(ArrayList<MBeacon> rangedBeacons) {
+    }
 
-            @Override
-            public void onRuleTriggered(String s, ArrayList<MSAction> arrayList) {
-                
+    @Override
+    public void onCampedBeacon(MBeacon beacon) {
+    }
 
-            }
-        }); 
-            
+    @Override
+    public void onExitedBeacon(MBeacon beacon) {
+    }
+
+    @Override
+    public void onRuleTriggered(MRule rule) {
+    }
+
+});
+```
+
+__6. Override Beaconstac SDK's notification__
+
+__Note: If you implement this method Beaconstac SDK will not trigger any notification. A `Notification.Builder` object will returned to the app and it will be the application's responsibility to modify and trigger the notifications.__
+
+```java
+Beaconstac.getInstance().overrideBeaconstacNotification(new BeaconstacNotification() {
+    @Override
+    public void notificationTrigger(Notification.Builder notification) {
+        
+    }
+});
+```
+
+
+__7. Add additional values to your webhooks__
+
+```java
+beaconstac.addValuesToWebhook(MY_KEY, VALUE);
+```
+
+OR
+```java
+beaconstac.addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
+```
+
+
+
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
