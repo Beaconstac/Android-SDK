@@ -9,7 +9,7 @@ Beaconstac SDK is an easy way to enable proximity marketing and location analyti
 ### In the `build.gradle` file of the app, add the following in the dependencies section:
 ```groovy
 implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-compile 'com.mobstac.beaconstac:proximity:3.0.1'
+compile 'com.mobstac.beaconstac:proximity:3.0.2'
 ```
 Latest version<br>
  [ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
@@ -163,6 +163,14 @@ OR
 beaconstac.addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
 ```
 
+__8. Set user's name__
+```java
+beaconstac.setUserName(USER_FIRST_NAME , USER_LAST_NAME);
+```
 
+__9. Set user's email__
+```java
+beaconstac.setUserEmail(USER_EMAIL);
+```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.

@@ -1,7 +1,6 @@
 package com.mobstac.beaconstacdemo;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -15,7 +14,6 @@ import com.mobstac.beaconstac.Beaconstac;
 import com.mobstac.beaconstac.core.MSException;
 import com.mobstac.beaconstac.interfaces.BeaconScannerCallbacks;
 import com.mobstac.beaconstac.interfaces.MSErrorListener;
-import com.mobstac.beaconstac.interfaces.MSSyncListener;
 import com.mobstac.beaconstac.models.MBeacon;
 import com.mobstac.beaconstac.models.MRule;
 import com.mobstac.beaconstac.utils.MSConstants;
@@ -81,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeBeaconstac() {
-        if (checkPermission())
+        if (checkPermission()) {
             try {
-                beaconstac = Beaconstac.initialize(getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSErrorListener() {
+                beaconstac = Beaconstac.initialize(getApplicationContext(), "08ddda7aabcbecfa54b29f6d032d7d289eb241b5", new MSErrorListener() {
                     @Override
                     public void onError(MSException e) {
                         Log.e("Beaconstac", "Initialization failed");
@@ -92,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
             } catch (MSException e) {
                 e.printStackTrace();
             }
-        if (beaconstac != null)
-            beaconstac.setBeaconScannerCallbacks(beaconScannerCallbacks);
-
+            if (beaconstac != null)
+                beaconstac.setBeaconScannerCallbacks(beaconScannerCallbacks);
+        }
     }
 
     private boolean checkPermission() {
