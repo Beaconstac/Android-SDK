@@ -165,12 +165,12 @@ beaconstac.addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
 
 __8. Set user's name__
 ```java
-beaconstac.setUserName(USER_FIRST_NAME , USER_LAST_NAME);
+Beaconstac.getInstance().setUserName(USER_FIRST_NAME , USER_LAST_NAME);
 ```
 
 __9. Set user's email__
 ```java
-beaconstac.setUserEmail(USER_EMAIL);
+Beaconstac.getInstance().setUserEmail(USER_EMAIL);
 ```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
