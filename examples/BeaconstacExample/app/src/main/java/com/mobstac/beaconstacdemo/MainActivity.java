@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeBeaconstac() {
         if (checkPermission()) {
             try {
-                beaconstac = Beaconstac.initialize(getApplicationContext(), "08ddda7aabcbecfa54b29f6d032d7d289eb241b5", new MSErrorListener() {
+                beaconstac = Beaconstac.initialize(getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSErrorListener() {
                     @Override
                     public void onError(MSException e) {
                         Log.e("Beaconstac", "Initialization failed");

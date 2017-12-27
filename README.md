@@ -155,12 +155,12 @@ Beaconstac.getInstance().overrideBeaconstacNotification(new BeaconstacNotificati
 __7. Add additional values to your webhooks__
 
 ```java
-beaconstac.addValuesToWebhook(MY_KEY, VALUE);
+Beaconstac.getInstance().addValuesToWebhook(MY_KEY, VALUE);
 ```
 
 OR
 ```java
-beaconstac.addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
+Beaconstac.getInstance().addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
 ```
 
 __8. Set user's name__
