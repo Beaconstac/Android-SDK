@@ -175,7 +175,7 @@ Beaconstac.getInstance().setUserEmail(USER_EMAIL);
 
 __10. Set scan power mode__
 ```java
-Beaconstac.getInstance().beaconstac.setPowerMode(POWER_MODE);
+Beaconstac.getInstance().setPowerMode(POWER_MODE);
 ```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
