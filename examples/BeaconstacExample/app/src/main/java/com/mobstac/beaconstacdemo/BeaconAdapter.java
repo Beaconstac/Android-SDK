@@ -62,9 +62,9 @@ public class BeaconAdapter extends BaseAdapter {
         Collections.sort(beacons, new Comparator<MBeacon>() {
             @Override
             public int compare(MBeacon lhs, MBeacon rhs) {
-                if (lhs.getFilteredRssi() > rhs.getFilteredRssi())
+                if (lhs.getRSSI() > rhs.getRSSI())
                     return -1;
-                else if (lhs.getFilteredRssi() < rhs.getFilteredRssi())
+                else if (lhs.getRSSI() < rhs.getRSSI())
                     return 1;
                 else
                     return 0;
@@ -87,7 +87,7 @@ public class BeaconAdapter extends BaseAdapter {
 
         TextView key = (TextView) view.findViewById(R.id.device_address);
         key.setText("Major: " + beacon.getMajor() + "\t\t\t Minor: " + beacon.getMinor() +
-            " \t\t\t  Filtered RSSI: " + beacon.getFilteredRssi());
+            " \t\t\t  Filtered RSSI: " + beacon.getRSSI());
 
         if (beacon.getIsCampedOn()) {
             view.setBackgroundResource(android.R.color.holo_green_light);
