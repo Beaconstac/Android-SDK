@@ -9,7 +9,7 @@ Beaconstac SDK is an easy way to enable proximity marketing and location analyti
 ### In the `build.gradle` file of the app, add the following in the dependencies section:
 ```groovy
 implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-compile 'com.mobstac.beaconstac:proximity:3.0.5'
+compile 'com.mobstac.beaconstac:proximity:3.0.6'
 ```
 Latest version<br>
  [ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
@@ -176,6 +176,11 @@ Beaconstac.getInstance().setUserEmail(USER_EMAIL);
 __10. Set scan power mode__
 ```java
 Beaconstac.getInstance().setPowerMode(POWER_MODE);
+```
+
+__11. Set latch latency__
+```java
+Beaconstac.getInstance().setLatchLatency(LATCH_LATENCY);
 ```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
