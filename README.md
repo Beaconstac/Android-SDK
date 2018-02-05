@@ -174,6 +174,7 @@ Beaconstac.getInstance().setUserEmail(USER_EMAIL);
 ```
 
 __10. Set scan power mode__
+
 Set the power mode for Bluetooth low energy scan callbacks. Set to HIGH for frequent scans with high power consumption.
 Default value is set to BALANCED.
 ```java
@@ -181,6 +182,7 @@ Beaconstac.getInstance().setPowerMode(POWER_MODE);
 ```
 
 __11. Set latch latency__
+
 Set the device's willingness to camp-on to new beacons if it is already camped on to one. If set to LOW the device switches to the other beacons quickly and if set to HIGH the device's attachment will be steady. 
 The default value is set to MEDIUM.
 ```java
