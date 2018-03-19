@@ -9,7 +9,7 @@ Beaconstac SDK is an easy way to enable proximity marketing and location analyti
 ### In the `build.gradle` file of the app, add the following in the dependencies section:
 ```groovy
 implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-compile 'com.mobstac.beaconstac:proximity:3.1'
+compile 'com.mobstac.beaconstac:proximity:3.11'
 ```
 Latest version<br>
  [ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
