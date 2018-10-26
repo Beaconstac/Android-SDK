@@ -90,8 +90,10 @@ public class MainActivity extends AppCompatActivity {
             } catch (MSException e) {
                 e.printStackTrace();
             }
-            if (beaconstac != null)
+            if (beaconstac != null) {
                 beaconstac.setBeaconScannerCallbacks(beaconScannerCallbacks);
+                beaconstac.subscribeForBackgroundUpdates(new NearbyBeaconBroadcastReceiver());
+            }
         }
     }
 

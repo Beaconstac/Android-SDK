@@ -28,6 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".NearbyBeaconBroadcastReceiver"
+            android:enabled="true">
+        </receiver>
     </application>
 
 </manifest>
