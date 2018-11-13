@@ -208,7 +208,7 @@ __13. Unsubscribe from background updates__
 Unsubscribe from background updates
 
 ```java
-Beaconstac.getInstance().unSubcribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
+Beaconstac.getInstance().unSubscribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
 
 __Due to the restriction added on Android 8 and above on running background tasks a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
