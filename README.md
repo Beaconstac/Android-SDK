@@ -189,12 +189,19 @@ The default value is set to MEDIUM.
 Beaconstac.getInstance().setLatchLatency(LATCH_LATENCY);
 ```
 
+## Handling background events
+
+
 __12. Subscribe for background updates__
 
-Subscribe for updates when a Beaconstac beacon if found nearby. Sends a callback to the registered receiver.
+Subscribe for updates when a Beaconstac beacon is found nearby. Sends a callback to the registered receiver.
 ```java
 Beaconstac.getInstance().subscribeForBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
+
+Once a callback is received by the receiver you can start scanning for beacons using the Beaconstac SDK and once done you should stop the scan. Please refer the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
+
+*__Note: Stopping the scan is required and should be a mandatory step as if not stopped the Beaconstac SDK will not stop the scan and will keep on scanning indefinitely. This will result in high power consumption and will keep on showing a persistent notification on devices running on Android 8 and above.__*
 
 
 __13. Unsubscribe from background updates__
@@ -204,7 +211,7 @@ Unsubscribe from updates when a Beaconstac beacon if found nearby.
 Beaconstac.getInstance().unScribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
 
-__Due to the restriction added on Android 8 and above on running background tasks a persitent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
+__Due to the restriction added on Android 8 and above on running background tasks a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
 
 ```
 Please add the following string resources to your app with suitable changes to the text value.
@@ -212,6 +219,7 @@ Please add the following string resources to your app with suitable changes to t
 <string name="background_notification_title">Notification title</string>
 <string name="background_notification_subtitle">Notification subtitle</string>
 
+Please add a drawable resource named ic_launcher to override the default icon for the persistent notification when the scan runs in background.
 ```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
