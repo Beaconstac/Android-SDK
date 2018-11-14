@@ -78,7 +78,7 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                                     beaconstac = Beaconstac.initialize(context.getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSSyncListener() {
                                         @Override
                                         public void onSuccess() {
-                                            beaconstac.startScanningBeacons(new MSErrorListener() {
+                                            beaconstac.stopScanningBeacons(new MSErrorListener() {
                                                 @Override
                                                 public void onError(MSException msException) {
 
