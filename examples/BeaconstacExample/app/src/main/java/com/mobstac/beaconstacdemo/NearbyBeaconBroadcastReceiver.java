@@ -88,7 +88,13 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
 
                                         @Override
                                         public void onFailure(MSException msException) {
+                                            // Stop scan even if initialization failed
+                                            beaconstac.stopScanningBeacons(new MSErrorListener() {
+                                                @Override
+                                                public void onError(MSException msException) {
 
+                                                }
+                                            });
                                         }
                                     });
                                 } catch (MSException e) {
