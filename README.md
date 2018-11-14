@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Beaconstac SDK is an easy way to enable proximity marketing and location analytics through an iBeacon-compliant BLE network.
+Beaconstac SDK is an easy way to enable proximity marketing and location analytics through a network of BLE beacons.
 
 ## Integrate with your existing project in Android Studio
 
@@ -189,8 +189,7 @@ The default value is set to MEDIUM.
 Beaconstac.getInstance().setLatchLatency(LATCH_LATENCY);
 ```
 
-## Handling background events
-
+## Handling background scanning and delivering notifications
 
 __12. Subscribe for background updates__
 
@@ -199,16 +198,17 @@ Subscribe for updates when a Beaconstac beacon is found nearby. Sends a callback
 Beaconstac.getInstance().subscribeForBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
 
-Once a callback is received by the receiver you can start scanning for beacons using the Beaconstac SDK and once done you should stop the scan. Please refer the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
+Once a callback is received by the receiver you can start scanning for beacons using the Beaconstac SDK and once done you *must* stop the scan. Please refer to the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
 
-*__Note: Stopping the scan is required and should be a mandatory step as if not stopped the Beaconstac SDK will not stop the scan and will keep on scanning indefinitely. This will result in high power consumption and will keep on showing a persistent notification on devices running on Android 8 and above.__*
+*__Note: Stopping the scan is required and should be a mandatory step. If not stopped, the Beaconstac SDK will keep scanning indefinitely. This will result in high power consumption and will keep on showing a persistent notification on devices running on Android 8 and above.__*
 
 
 __13. Unsubscribe from background updates__
 
-Unsubscribe from updates when a Beaconstac beacon if found nearby.
+Unsubscribe from background updates
+
 ```java
-Beaconstac.getInstance().unScribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
+Beaconstac.getInstance().unSubscribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
 
 __Due to the restriction added on Android 8 and above on running background tasks a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
