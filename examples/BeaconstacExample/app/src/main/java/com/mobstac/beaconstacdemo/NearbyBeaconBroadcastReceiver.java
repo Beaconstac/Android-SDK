@@ -41,6 +41,7 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
 
                                     }
                                 });
+                                autoStopScan(context, 10000);
                             }
 
                             @Override
@@ -51,11 +52,42 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                     } catch (MSException e) {
                         e.printStackTrace();
                     }
-                    if (beaconstac != null) {
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
+                }
+
+                @Override
+                public void onLost(Message message) {
+                }
+            });
+        }
+    }
+
+    private void autoStopScan(final Context context, int duration){
+        if (beaconstac != null) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    beaconstac.stopScanningBeacons(new MSErrorListener() {
+                        @Override
+                        public void onError(MSException msException) {
+
+                        }
+                    });
+                }
+            }, duration); // Set the duration for which the scan needs to run for.
+        } else {
+            // Handle reinitialization if Beaconstac's instance is null.
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (ActivityCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        beaconstac = Beaconstac.initialize(context.getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSSyncListener() {
                             @Override
-                            public void run() {
+                            public void onSuccess() {
                                 beaconstac.stopScanningBeacons(new MSErrorListener() {
                                     @Override
                                     public void onError(MSException msException) {
@@ -63,54 +95,24 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                                     }
                                 });
                             }
-                        }, 10000); // Set the duration for which the scan needs to run for.
-                    } else {
 
-                        // Handle reinitialization if Beaconstac's instance is null.
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
                             @Override
-                            public void run() {
-                                try {
-                                    if (ActivityCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(context.getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                        return;
+                            public void onFailure(MSException msException) {
+                                // Stop scan even if initialization failed
+                                beaconstac.stopScanningBeacons(new MSErrorListener() {
+                                    @Override
+                                    public void onError(MSException msException) {
+
                                     }
-                                    beaconstac = Beaconstac.initialize(context.getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSSyncListener() {
-                                        @Override
-                                        public void onSuccess() {
-                                            beaconstac.stopScanningBeacons(new MSErrorListener() {
-                                                @Override
-                                                public void onError(MSException msException) {
-
-                                                }
-                                            });
-                                        }
-
-                                        @Override
-                                        public void onFailure(MSException msException) {
-                                            // Stop scan even if initialization failed
-                                            beaconstac.stopScanningBeacons(new MSErrorListener() {
-                                                @Override
-                                                public void onError(MSException msException) {
-
-                                                }
-                                            });
-                                        }
-                                    });
-                                } catch (MSException e) {
-                                    e.printStackTrace();
-                                }
+                                });
                             }
-                        }, 10000); // Set the duration for which the scan needs to run for.
-
-
+                        });
+                    } catch (MSException e) {
+                        e.printStackTrace();
                     }
                 }
+            }, duration); // Set the duration for which the scan needs to run for.
 
-                @Override
-                public void onLost(Message message) {
-                }
-            });
         }
     }
 }
