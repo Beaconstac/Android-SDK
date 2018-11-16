@@ -193,7 +193,7 @@ Beaconstac.getInstance().setLatchLatency(LATCH_LATENCY);
 
 __12. Subscribe for background updates__
 
-Subscribe for updates when a Beaconstac beacon is found nearby. Sends a callback to the registered receiver.
+Subscribe for updates when the device enter a beacon zone while the app is in background or killed state. Sends a callback to the registered receiver.
 ```java
 Beaconstac.getInstance().subscribeForBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
 ```
@@ -219,7 +219,7 @@ Please add the following string resources to your app with suitable changes to t
 <string name="background_notification_title">Notification title</string>
 <string name="background_notification_subtitle">Notification subtitle</string>
 
-Please add a drawable resource named ic_launcher to override the default icon for the persistent notification when the scan runs in background.
+Please add a drawable resource named ic_launcher to override the default icon for the persistent notification shown when the scan runs in background.
 ```
 
 You can find more information and example usage in the `BeaconstacExample` app contained in the `examples` directory of this repo.
