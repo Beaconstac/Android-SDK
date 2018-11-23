@@ -18,7 +18,6 @@ Latest version
 
 __Beaconstac requires the following permissions__
 ```xml
-
 <uses-permission android:name="android.permission.BLUETOOTH" />
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 <uses-permission android:name="android.permission.INTERNET" />
@@ -40,17 +39,16 @@ Beaconstac requires the location permission to scan for nearby beacons. Beaconst
 ### Prerequisites
 
 1. Please extract your developer token from the Beaconstac dashboard under "My Account".
-
 2. Internet access is required to initialize the SDK.
-
 3. Bluetooth enabled for scanning beacons.
 
 ## Usage
 
 ### Use our one line integration
 
-__Note:__ If this is used, the Beaconstac SDK will automatically start scanning for beacons and trigger notifications based on rules defined on Beaconstac dashboard. You can also explicitly start or stop beacon scanning by calling `Beaconstac.getInstance().startScanningBeacons()` and `Beaconstac.getInstance().stopScanningBeacons()` respectively. Please refer [advanced](#3-start-scan) for more info.
+__Note:__ If this is used, the Beaconstac SDK will automatically start scanning for beacons and trigger notifications based on rules defined on Beaconstac dashboard. You can also explicitly start or stop beacon scanning by calling `Beaconstac.getInstance(getApplicationContext()).startScanningBeacons()` and `Beaconstac.getInstance(getApplicationContext()).stopScanningBeacons()` respectively. Please refer [advanced](#3-start-scan) for more info.
 
+__For using the SDK while the app is in the background or terminated state, please refer [Handling background scanning and delivering notifications](#handling-background-scanning-and-delivering-notifications).__
 
 ```java
 Beaconstac.initialize(getApplicationContext(), MY_DEVELOPER_TOKEN, new MSErrorListener() {
@@ -73,7 +71,7 @@ Beaconstac.initialize(getApplicationContext(), MY_DEVELOPER_TOKEN, new MSSyncLis
     @Override
     public void onSuccess() {
         Log.d("Beaconstac", "Initialization successful");
-        Beaconstac.getInstance().startScanningBeacons(new MSErrorListener() {
+        Beaconstac.getInstance(getApplicationContext()).startScanningBeacons(new MSErrorListener() {
             @Override
             public void onError(MSException msException) {
 
@@ -91,12 +89,12 @@ Beaconstac.initialize(getApplicationContext(), MY_DEVELOPER_TOKEN, new MSSyncLis
 
 __2. Get Beaconstac instance__
 ```java
-Beaconstac beaconstac = Beaconstac.getInstance();
+Beaconstac beaconstac = Beaconstac.getInstance(getApplicationContext());
 ```
 #### 3. Start scan
 
 ```java
-Beaconstac.getInstance().startScanningBeacons(new MSErrorListener() {
+Beaconstac.getInstance(getApplicationContext()).startScanningBeacons(new MSErrorListener() {
     @Override
     public void onError(MSException msException) {
 
@@ -105,7 +103,7 @@ Beaconstac.getInstance().startScanningBeacons(new MSErrorListener() {
 ```
 __4. Stop scan__
 ```java
-Beaconstac.getInstance().stopScanningBeacons(new MSErrorListener() {
+Beaconstac.getInstance(getApplicationContext()).stopScanningBeacons(new MSErrorListener() {
     @Override
     public void onError(MSException msException) {
 
@@ -118,7 +116,7 @@ __5. Get beacon event callbacks__
 __Note: You only need to implement this if you want to get callbacks for beacon events.__
 
 ```java
-Beaconstac.getInstance().setBeaconScannerCallbacks(new BeaconScannerCallbacks() {
+Beaconstac.getInstance(getApplicationContext()).setBeaconScannerCallbacks(new BeaconScannerCallbacks() {
     @Override
     public void onScannedBeacons(ArrayList<MBeacon> rangedBeacons) {
     }
@@ -143,7 +141,7 @@ __6. Override Beaconstac SDK's notification__
 __Note: If you implement this method Beaconstac SDK will not trigger any notification. A `Notification.Builder` object will returned to the app and it will be the application's responsibility to modify and trigger the notifications.__
 
 ```java
-Beaconstac.getInstance().overrideBeaconstacNotification(new BeaconstacNotification() {
+Beaconstac.getInstance(getApplicationContext()).overrideBeaconstacNotification(new BeaconstacNotification() {
     @Override
     public void notificationTrigger(Notification.Builder notification) {
 
@@ -155,22 +153,22 @@ Beaconstac.getInstance().overrideBeaconstacNotification(new BeaconstacNotificati
 __7. Add additional values to your webhooks__
 
 ```java
-Beaconstac.getInstance().addValuesToWebhook(MY_KEY, VALUE);
+Beaconstac.getInstance(getApplicationContext()).addValuesToWebhook(MY_KEY, VALUE);
 ```
 
 OR
 ```java
-Beaconstac.getInstance().addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
+Beaconstac.getInstance(getApplicationContext()).addValuesToWebhook(MY_KEY_VALUE_HASHMAP);
 ```
 
 __8. Set user's name__
 ```java
-Beaconstac.getInstance().setUserName(USER_FIRST_NAME , USER_LAST_NAME);
+Beaconstac.getInstance(getApplicationContext()).setUserName(USER_FIRST_NAME , USER_LAST_NAME);
 ```
 
 __9. Set user's email__
 ```java
-Beaconstac.getInstance().setUserEmail(USER_EMAIL);
+Beaconstac.getInstance(getApplicationContext()).setUserEmail(USER_EMAIL);
 ```
 
 __10. Set scan power mode__
@@ -178,7 +176,7 @@ __10. Set scan power mode__
 Set the power mode for bluetooth low energy scan callbacks. Set to HIGH for frequent scans with high power consumption.
 Default value is set to BALANCED.
 ```java
-Beaconstac.getInstance().setPowerMode(POWER_MODE);
+Beaconstac.getInstance(getApplicationContext()).setPowerMode(POWER_MODE);
 ```
 
 __11. Set latch latency__
@@ -186,32 +184,71 @@ __11. Set latch latency__
 Set the device's willingness to camp-on to new beacons if it is already camped on to one. If set to LOW the device switches to the other beacons quickly and if set to HIGH the device's attachment will be steady.
 The default value is set to MEDIUM.
 ```java
-Beaconstac.getInstance().setLatchLatency(LATCH_LATENCY);
+Beaconstac.getInstance(getApplicationContext()).setLatchLatency(LATCH_LATENCY);
 ```
 
 ## Handling background scanning and delivering notifications
 
-__12. Subscribe for background updates__
 
-Subscribe for updates when the device enter a beacon zone while the app is in background or killed state. Sends a callback to the registered receiver.
+### App running in the background
+
+__For Android < 8__
+
+_You can scan for beacons when the app is in the foreground or in the background._
+
+__For Android >= 8__
+
+_You scan for beacons when the app is in the foreground.
+If you need to scan for beacons while the app is running in the background, please start a [FOREGROUND SERVICE](https://developer.android.com/guide/components/services#Foreground) and start the scan inside the service._
+
+
+### App in terminated state
+
+You can use the following method to register a `BroadcastReceiver` and get callbacks when the device enters the range of a new beacon or beacon goes out of range.
+
+The `BroadcastReceiver` will receive callbacks as follows.
+
+_1. Periodically<br>_
+_2. When device screen is turned on._
+
+*__Note: The `BroadcastReceiver` will be unregistered when the device reboots, please make sure you register the receiver again.__*
+
+__BroadcastReceiver example implementation__
 ```java
-Beaconstac.getInstance().subscribeForBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
+public class MyBroadcastReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Nearby.getMessagesClient(context).handleIntent(intent, new MessageListener() {
+            @Override
+            public void onFound(Message message) {
+            }
+    
+            @Override
+            public void onLost(Message message) {
+            }
+        });
+    }
+}
 ```
 
-Once a callback is received by the receiver you can start scanning for beacons using the Beaconstac SDK and once done you *must* stop the scan. Please refer to the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
+__1. Subscribe for updates__
+
+```java
+Beaconstac.getInstance(getApplicationContext()).subscribeForBackgroundUpdates(new MyBroadcastReceiver());
+```
+
+Once a callback is received by the receiver you can choose to start scanning for beacons using the Beaconstac SDK and once done you *must* stop the scan. Please refer to the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
 
 *__Note: Stopping the scan is required and should be a mandatory step. If not stopped, the Beaconstac SDK will keep scanning indefinitely. This will result in high power consumption and will keep on showing a persistent notification on devices running on Android 8 and above.__*
 
 
-__13. Unsubscribe from background updates__
-
-Unsubscribe from background updates
+__2. Unsubscribe from updates__
 
 ```java
-Beaconstac.getInstance().unSubscribeFromBackgroundUpdates(RECEIVER_EXTENDING_BROADCAST_RECEIVER);
+Beaconstac.getInstance(getApplicationContext()).unSubscribeFromBackgroundUpdates(new MyBroadcastReceiver());
 ```
 
-__Due to the restriction added on Android 8 and above on running background tasks a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
+__Due to the restriction added on Android 8 and above on running background tasks, a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__
 
 ```
 Please add the following string resources to your app with suitable changes to the text value.
