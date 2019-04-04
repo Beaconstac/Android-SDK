@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Beaconstac SDK is an easy way to enable proximity marketing and location analytics through a network of BLE beacons.
+Beaconstac Advanced Android SDK is meant only for specialized use cases. Please check with the support team before deciding to integrate this SDK.
 
 ## Integrate with your existing project in Android Studio
 
