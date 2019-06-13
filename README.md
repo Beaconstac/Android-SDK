@@ -9,10 +9,18 @@ Beaconstac Advanced Android SDK is meant only for specialized use cases. Please 
 ### In the `build.gradle` file of the app, add the following in the dependencies section:
 ```groovy
 implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-compile 'com.mobstac.beaconstac:proximity:3.*'
+implementation 'com.mobstac.beaconstac:proximity:3.3+'
 ```
+
+If you want to receive background updates as shown in the sample app [here](examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java), add this to your app gradle
+```groovy
+implementation 'com.google.android.gms:play-services-nearby:16.0.0'
+```
+
+
 Latest version
- [ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
+
+[ ![Download](https://api.bintray.com/packages/mobstac/maven/proximity/images/download.svg) ](https://bintray.com/mobstac/maven/proximity/_latestVersion)
 
 ## Permissions
 
@@ -94,7 +102,7 @@ Beaconstac beaconstac = Beaconstac.getInstance(getApplicationContext());
 #### 3. Start scan
 
 ```java
-Beaconstac.getInstance(getApplicationContext()).startScanningBeacons(new MSErrorListener() {
+Beaconstac.getInstance(getApplicationContext()).startScanningBeacons(getApplicationContext(), new MSErrorListener() {
     @Override
     public void onError(MSException msException) {
 
@@ -103,7 +111,7 @@ Beaconstac.getInstance(getApplicationContext()).startScanningBeacons(new MSError
 ```
 __4. Stop scan__
 ```java
-Beaconstac.getInstance(getApplicationContext()).stopScanningBeacons(new MSErrorListener() {
+Beaconstac.getInstance(getApplicationContext()).stopScanningBeacons(getApplicationContext(), new MSErrorListener() {
     @Override
     public void onError(MSException msException) {
 
@@ -163,12 +171,12 @@ Beaconstac.getInstance(getApplicationContext()).addValuesToWebhook(MY_KEY_VALUE_
 
 __8. Set user's name__
 ```java
-Beaconstac.getInstance(getApplicationContext()).setUserName(USER_FIRST_NAME , USER_LAST_NAME);
+Beaconstac.getInstance(getApplicationContext()).setUserName(getApplicationContext(), USER_FIRST_NAME , USER_LAST_NAME);
 ```
 
 __9. Set user's email__
 ```java
-Beaconstac.getInstance(getApplicationContext()).setUserEmail(USER_EMAIL);
+Beaconstac.getInstance(getApplicationContext()).setUserEmail(getApplicationContext(), USER_EMAIL);
 ```
 
 __10. Set scan power mode__
@@ -234,7 +242,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 __1. Subscribe for updates__
 
 ```java
-Beaconstac.getInstance(getApplicationContext()).subscribeForBackgroundUpdates(new MyBroadcastReceiver());
+Beaconstac.getInstance(getApplicationContext()).subscribeForBackgroundUpdates(getApplicationContext(), new MyBroadcastReceiver());
 ```
 
 Once a callback is received by the receiver you can choose to start scanning for beacons using the Beaconstac SDK and once done you *must* stop the scan. Please refer to the example receiver [here](https://github.com/Beaconstac/Android-SDK/blob/master/examples/BeaconstacExample/app/src/main/java/com/mobstac/beaconstacdemo/NearbyBeaconBroadcastReceiver.java).
@@ -245,7 +253,7 @@ Once a callback is received by the receiver you can choose to start scanning for
 __2. Unsubscribe from updates__
 
 ```java
-Beaconstac.getInstance(getApplicationContext()).unSubscribeFromBackgroundUpdates(new MyBroadcastReceiver());
+Beaconstac.getInstance(getApplicationContext()).unSubscribeFromBackgroundUpdates(getApplicationContext(), new MyBroadcastReceiver());
 ```
 
 __Due to the restriction added on Android 8 and above on running background tasks, a persistent notification will be shown when the SDK is running in the background. Please see [this](https://developer.android.com/about/versions/oreo/background) for more details.__

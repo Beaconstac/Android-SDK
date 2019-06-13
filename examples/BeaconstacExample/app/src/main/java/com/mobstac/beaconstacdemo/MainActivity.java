@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (beaconstac != null) {
                 beaconstac.setBeaconScannerCallbacks(beaconScannerCallbacks);
-                beaconstac.subscribeForBackgroundUpdates(new NearbyBeaconBroadcastReceiver());
+                beaconstac.subscribeForBackgroundUpdates(this, new NearbyBeaconBroadcastReceiver());
             }
         }
     }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                ) {
+        ) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                     MSConstants.REQUEST_LOCATION_PERMISSION);
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        beaconstac.stopScanningBeacons(new MSErrorListener() {
+        beaconstac.stopScanningBeacons(this, new MSErrorListener() {
             @Override
             public void onError(MSException msException) {
 

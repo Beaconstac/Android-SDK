@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.android.support:design:28.0.0'
-    compile 'com.mobstac.beaconstac:proximity:3.18'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.mobstac.beaconstac:proximity:3.30'
+    implementation 'com.google.android.gms:play-services-nearby:16.0.0'
 }

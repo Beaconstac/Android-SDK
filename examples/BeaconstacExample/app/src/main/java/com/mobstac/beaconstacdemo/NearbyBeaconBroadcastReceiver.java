@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.messages.Message;
@@ -35,7 +34,7 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                         beaconstac = Beaconstac.initialize(context.getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSSyncListener() {
                             @Override
                             public void onSuccess() {
-                                beaconstac.startScanningBeacons(new MSErrorListener() {
+                                beaconstac.startScanningBeacons(context, new MSErrorListener() {
                                     @Override
                                     public void onError(MSException msException) {
 
@@ -61,13 +60,13 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    private void autoStopScan(final Context context, int duration){
+    private void autoStopScan(final Context context, int duration) {
         if (beaconstac != null) {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    beaconstac.stopScanningBeacons(new MSErrorListener() {
+                    beaconstac.stopScanningBeacons(context, new MSErrorListener() {
                         @Override
                         public void onError(MSException msException) {
 
@@ -88,7 +87,7 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                         beaconstac = Beaconstac.initialize(context.getApplicationContext(), "MY_DEVELOPER_TOKEN", new MSSyncListener() {
                             @Override
                             public void onSuccess() {
-                                beaconstac.stopScanningBeacons(new MSErrorListener() {
+                                beaconstac.stopScanningBeacons(context, new MSErrorListener() {
                                     @Override
                                     public void onError(MSException msException) {
 
@@ -99,7 +98,7 @@ public class NearbyBeaconBroadcastReceiver extends BroadcastReceiver {
                             @Override
                             public void onFailure(MSException msException) {
                                 // Stop scan even if initialization failed
-                                beaconstac.stopScanningBeacons(new MSErrorListener() {
+                                beaconstac.stopScanningBeacons(context, new MSErrorListener() {
                                     @Override
                                     public void onError(MSException msException) {
 
